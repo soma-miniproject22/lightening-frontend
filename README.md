@@ -1,70 +1,41 @@
-# Getting Started with Create React App
+# 소마 번개 프론트엔드
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## [ver 0.0.1]
 
-## Available Scripts
+### TODO
 
-In the project directory, you can run:
+화면 레이아웃 초안 만들기
 
-### `npm start`
+API 초안 작성하기
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 페이지 흐름도
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+소셜 로그인 페이지 > 목록 페이지(+필터) > 상세 페이지
 
-### `npm test`
+### 기본 기능
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+로그인
 
-### `npm run build`
+글 CRUD
+- 필터링 포함
+- 목록 조회 시 사진(섬네일) 표시
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+댓글 CRUD (QnA)
+- (ex) `제가 5분 정도 늦을 것 같아요 ㅠㅠ`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+참석 여부 표시
+- :white_check_mark: : 참석
+- :eyes: : 관심
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 게시글 필드 정리
+- 제목: string
+- 장소(optional): string - 추후 지도 상의 위치로 변경될 수 있음
+- 약속 시각: datetime
+- 종류: enum(밥|커피|술)
+- 모집 인원: number
+- 모집 상태: enum(모집중|모집완료) - 모집 인원이 차거나 약속 시간이 지나면 '모집 완료'로 자동으로 변경
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 기타 결정 내용
+- Mobile UI 먼저 만들기
+- 글 작성 시 Placeholder 제공하기 (ex: `이렇게 글을 쓰면 더 좋아요!`)
+- 추후 PWA 기반 알림을 제공할 수 있음
