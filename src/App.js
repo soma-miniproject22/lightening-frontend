@@ -4,6 +4,9 @@ import WantedList from './components/WantedList';
 // 이미지는 추후 백엔드/CDN에서 이미지 주소를 전달 받아야.
 import coffee from './assets/img/coffee.png';
 import kSoup from './assets/img/k-soup.png';
+// import { useEffect } from 'react';
+
+// import Api from './api/Api';
 
 const tempOriginal = [
   {
@@ -45,6 +48,9 @@ const tempWantedListData = [
 ];
 
 function App() {
+  // useEffect(() => {
+  //   data = await Api.getCards(); <- 이런거 부르면됩니다.
+  // }, []);
   return (
     <div className="App">
       <WantedList list={tempWantedListData} />
