@@ -3,6 +3,8 @@ import './index.css';
 import React from 'react';
 import { List } from 'semantic-ui-react';
 
+const MAX_NAMES_TO_DISPLAY = 2;
+
 const WantedList = ({ list }) => {
   return (
     <List divided relaxed>
@@ -16,7 +18,7 @@ const WantedList = ({ list }) => {
           Math.floor(Math.random() * 10) + (isParticipating ? 1 : 0);
         const _names = '이상빈 김민겸 김수홍 이형창'
           .split(' ')
-          .slice(0, Math.min(handsCount, 3)) // 3 혹은 카운터 이상으로 표시 x
+          .slice(0, Math.min(handsCount, MAX_NAMES_TO_DISPLAY)) // MAX 혹은 카운터 이상으로 표시 x
           .map((e) => (Math.random() > 0.5 ? e : '')) // 50% 확률로 선택
           .filter((e) => !!e) // 빈 값 제외
           .join(' '); // 문자열로 반환
