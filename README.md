@@ -1,4 +1,4 @@
-# 소마 번개 프론트엔드
+# 소마 번개 프론트엔드 [LIVE](https://unique-tartufo-15163a.netlify.app/)
 
 ## [ver 0.0.1]
 
