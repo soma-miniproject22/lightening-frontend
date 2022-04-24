@@ -1,0 +1,93 @@
+.b-list-item {
+  padding: 0.5em !important;
+
+  display: flex !important;
+}
+
+.b-list-item-header {
+  font-size: 1.1em;
+  font-family: inherit !important;
+  margin-bottom: 0.25em !important;
+}
+
+.b-list-item-content {
+  width: 100% !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-around;
+}
+
+/* 가장 강조돼야 할 내용 */
+.b-list-item-body {
+  color: #333;
+  font-size: 1.3em;
+  line-height: 1.2em;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.25em !important;
+}
+
+.b-list-item-date {
+  font-size: 1.2em;
+  color: grey;
+  margin-bottom: 0.25em !important;
+}
+
+.b-list-item-emoji-root-container {
+  display: flex !important;
+  justify-content: flex-end !important;
+  margin-top: 0.25em !important;
+}
+
+.b-list-item-emoji-root-container > div > span {
+  font-size: 1.3em;
+}
+
+.b-list-item-emoji-each-container {
+  border-radius: 1em;
+  padding: 8px;
+  background: gainsboro;
+
+  margin-left: 0.25em;
+}
+
+.b-list-item-emoji-each-container-selected {
+  border-radius: 1em;
+  padding: 8px;
+  background: linear-gradient(70deg, pink, plum, palevioletred);
+
+  margin-left: 0.25em;
+}
+
+.thumb-container {
+  width: 74px;
+  height: 74px;
+
+  margin-right: 0.5em;
+  position: relative;
+  vertical-align: top;
+}
+
+.thumb {
+  width: 74px;
+  height: 74px;
+  aspect-ratio: auto 74 / 74;
+
+  border-radius: 36%;
+  background-size: 74px 74px;
+}
+
+/* radius를 비선형적으로 깎는 방법 (안드로이드 앱 아이콘 같이) */
+/* bg가 감싸지는 원리는 모르겠음 */
+/* 출처: 네이버 카페 모바일 페이지 CSS */
+.thumb-container::after {
+  background-image: url(https://ca-fe.pstatic.net/web-mobile/static/img/ios-cover-mask-47.svg?e93387ec0d01d47c3139b99acbd95cf3https://ca-fe.pstatic.net/web-mobile/static/img/io…over-mask-47.svg?e93387ec0d01d47c3139b99acbd95cf3);
+  opacity: 100%;
+  background-size: 74px 74px;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
