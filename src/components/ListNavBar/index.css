@@ -1,0 +1,40 @@
+.l-list-navbar-root {
+  position: sticky;
+  left: 0px;
+  top: 0px;
+  z-index: 10000;
+
+  background: white;
+  padding: 0.5em;
+  border-bottom: 1px solid black;
+}
+
+.l-list-navbar-logo-container {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.l-list-navbar-logo {
+  margin-top: 0.25em;
+
+  font-size: 2em;
+}
+
+.l-list-navbar-title {
+  font-family: inherit;
+  font-size: 2em !important;
+  margin: 0 0 0 0.25em !important;
+}
+
+.l-list-navbar-title.title-1 {
+  color: deeppink;
+}
+
+.l-list-navbar-title.title-2 {
+  color: navy;
+}
+
+.l-list-navbar-title.title-3 {
+  margin-left: 0 !important;
+  color: orangered;
+}

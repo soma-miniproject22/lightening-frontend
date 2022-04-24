@@ -1,8 +1,8 @@
 // import { useEffect } from 'react';
 // import Api from './api/Api';
 
-import './App.css';
 import WantedList from './components/WantedList';
+import ListNavBar from './components/ListNavBar';
 
 // 이미지는 추후 백엔드/CDN에서 이미지 주소를 전달 받아야.
 import coffee from './assets/img/coffee.png';
@@ -64,6 +64,7 @@ function App() {
   // }, []);
   return (
     <div className="App">
+      <ListNavBar />
       <WantedList list={tempWantedListData} />
     </div>
   );
