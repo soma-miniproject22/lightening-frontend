@@ -2,6 +2,12 @@
 
 ## [ver 0.0.1]
 
+사용 중인 리소스:
+
+- Emoji CSS: https://ionicabizau.github.io/emoji.css/
+- Semantic UI
+- IBM Plex Sans (Google Web Fonts)
+
 ### TODO
 
 화면 레이아웃 초안 만들기
