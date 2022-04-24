@@ -4,26 +4,72 @@
 
 .b-list-item {
   padding: 0.5em !important;
+
   display: flex !important;
 }
 
 .b-list-item-header {
+  font-size: 1.1em;
   font-family: inherit !important;
+  margin-bottom: 0.25em !important;
 }
 
 .b-list-item-content {
+  width: 100% !important;
+
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-around;
 }
 
+/* 가장 강조돼야 할 내용 */
+.b-list-item-body {
+  color: #333;
+  font-size: 1.3em;
+  line-height: 1.2em;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.25em !important;
+}
+
+.b-list-item-date {
+  font-size: 1.2em;
+  color: grey;
+  margin-bottom: 0.25em !important;
+}
+
+.b-list-item-emoji-root-container {
+  display: flex !important;
+  justify-content: flex-end !important;
+  margin-top: 0.25em !important;
+}
+
+.b-list-item-emoji-root-container > div > span {
+  font-size: 1.3em;
+}
+
+.b-list-item-emoji-each-container {
+  border-radius: 1em;
+  padding: 8px;
+  background: gainsboro;
+
+  margin-left: 0.25em;
+}
+
+.b-list-item-emoji-each-container-selected {
+  border-radius: 1em;
+  padding: 8px;
+  background: linear-gradient(70deg, pink, plum, palevioletred);
+
+  margin-left: 0.25em;
+}
+
 .thumb-container {
   width: 74px;
   height: 74px;
-  position: relative;
-  vertical-align: top;
 
   margin-right: 0.5em;
+  position: relative;
+  vertical-align: top;
 }
 
 .thumb {
