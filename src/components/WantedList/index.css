@@ -4,6 +4,14 @@
   display: flex !important;
 }
 
+.b-list-item.b-list-item-closed {
+  background: rgba(218, 218, 218, 0.4);
+}
+
+.b-list-item.b-list-item-closed > .b-list-item-content > * {
+  color: rgba(0, 0, 0, 0.3) !important;
+}
+
 .b-list-item-header {
   font-size: 1.1em;
   font-family: inherit !important;

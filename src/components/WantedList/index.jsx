@@ -26,8 +26,13 @@ const WantedList = ({ list }) => {
         const names =
           _names + (_names.length > 0 && handsCount > 1 ? ' ...' : '');
 
+        const isClosed = Math.random() < 0.25;
+
         return (
-          <List.Item className="b-list-item" key={id}>
+          <List.Item
+            className={'b-list-item' + (isClosed ? ' b-list-item-closed' : '')}
+            key={id}
+          >
             <div className="thumb-container">
               <img src={thumbnailImage} className="thumb" alt="thumbnail" />
             </div>
