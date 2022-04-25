@@ -1,5 +1,17 @@
+.b-list-root {
+  margin-top: 0 !important;
+}
+
+.b-list-root-category-title {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 1.15em;
+
+  margin: 0.25em;
+}
+
 .b-list-item {
   padding: 0.5em !important;
+  border: none !important;
 
   display: flex !important;
 }
