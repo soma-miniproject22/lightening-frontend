@@ -12,6 +12,10 @@
 
 - 글쓰기 페이지
 - 스와이프 UX
+- 헤더에 로그인 버튼 배치 및 API 연동
+- 헤더에서 로그인 여부에 따라 분기 - (버튼 | 사용자 이름+프사) 배치
+
+![](https://github.com/soma-miniproject22/lightening-frontend/blob/main/docs/assets/header_user_ui.jpg)
 
 ### 페이지 흐름도
 
@@ -24,14 +28,13 @@
 - 글 목록 조회 (필터, 페이지네이션)
 - 관심/참여 toggle
 - My Info API / Redirect QueryString
-   ```java
-    private String nickname; // 사용자 이름
-    private String thumbnailURL; // 섬네일 경로
-    private String providerId; // oauth2 id (그냥 유니크)
-    ```
-    리다이렉션 예시
-    `ex) http://{API_SERVER}/redirect?access_token=fooooooo&redirect=http://{FRONT_SERVER}`
-
+  ```java
+   private String nickname; // 사용자 이름
+   private String thumbnailURL; // 섬네일 경로
+   private String providerId; // oauth2 id (그냥 유니크)
+  ```
+  리다이렉션 예시
+  `ex) http://{API_SERVER}/redirect?access_token=fooooooo&redirect=http://{FRONT_SERVER}`
 
 ### 기본 기능
 
