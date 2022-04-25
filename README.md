@@ -14,8 +14,7 @@
 - 스와이프 UX
 - 헤더에 로그인 버튼 배치 및 API 연동
 - 헤더에서 로그인 여부에 따라 분기 - (버튼 | 사용자 이름+프사) 배치
-
-![](https://github.com/soma-miniproject22/lightening-frontend/blob/main/docs/assets/header_user_ui.jpg)
+- <img src="https://github.com/soma-miniproject22/lightening-frontend/blob/main/docs/assets/header_user_ui.jpg" width="400" />
 
 ### 페이지 흐름도
 
