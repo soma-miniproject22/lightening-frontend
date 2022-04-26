@@ -17,23 +17,14 @@ class Api {
    *  }
    *  ```
    */
-  signin() {
-    return new Promise((resolve, reject) => {
-      Interceptor.getInstance()
-        .get(CONFIG.API_SERVER + '/authenticate/github', {
-          params: { redirect: CONFIG.BASE_URL },
-        })
-        .then((res) => res.data)
-        .then((res) => {
-          if (!res.error) resolve(res.data);
-          throw new Error(res.error);
-        })
-        .catch((e) => reject(e));
+  async signin() {
+    return await handlePromiseGet('/authenticate/github', {
+      redirect: CONFIG.BASE_URL,
     });
   }
 
   /**
-   *  get Information of Cards
+   *  get Information of Posts
    *  @param {Date} required_date - required_date of cards
    *  @return {Object} response
    *  @example
@@ -53,29 +44,20 @@ class Api {
    *  }
    *  ```
    */
-  getCards(required_date = new Date()) {
-    return new Promise((resolve, reject) => {
-      Interceptor.getInstance()
-        .get(CONFIG.API_SERVER + '/cards', {
-          params: { date: required_date },
-        })
-        .then((res) => res.data)
-        .then((res) => {
-          if (!res.error) resolve(res.data);
-          throw new Error(res.error);
-        })
-        .catch((e) => reject(e));
-    });
+  async getPosts(tags) {
+    return await handlePromiseGet('/posts', tags ? { tag: tags } : {});
   }
 
-  // authenticated zone below
-  // getStat(survey_id) {
-  //   return new Promise((resolve, reject) => {
-  //     Interceptor.getInstance()
-  //       .post(CONFIG.API_SERVER + '/result/stats', survey_id, authHeader({}))
-  //       .then((res) => resolve(res.data))
-  //       .catch(reject);
-  //   });
+  async toggleEye() {
+    return await handlePromiseGet('/toggleEye');
+  }
+
+  async toggleHand() {
+    return await handlePromiseGet('/toggleHand');
+  }
+
+  // async addPost(post) {
+  //   return await handlePromisePost('/posts', post);
   // }
 }
 
@@ -89,8 +71,22 @@ export default new Api();
 //   const tokenStr = localStorage.getItem('accessToken');
 //   return tokenStr
 //     ? {
-//       headers: { 'x-access-token': tokenStr },
+//       headers: { 'Authorization': tokenStr },
 //       ...Iany,
 //     }
 //     : { ...Iany };
 // }
+
+// eslint-disable-next-line no-unused-vars
+const handlePromiseGet = async (url, params = {}) => {
+  return new Promise((resolve, reject) => {
+    Interceptor.getInstance()
+      .get(CONFIG.API_SERVER + url, { params: params })
+      .then((res) => res.data)
+      .then((res) => {
+        if (!res.error) resolve(res.data);
+        throw new Error(res.error);
+      })
+      .catch((e) => reject(e));
+  });
+};

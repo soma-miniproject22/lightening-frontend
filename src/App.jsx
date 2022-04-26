@@ -10,6 +10,7 @@ import kSoup from './assets/img/k-soup.png';
 import board2 from './assets/img/board2.jpg';
 import subway from './assets/img/subway.png';
 import walk from './assets/img/walk.jpg';
+import AddPost from './components/AddPost';
 
 const tempOriginal = [
   {
@@ -64,6 +65,7 @@ function App() {
   // }, []);
   return (
     <div className="App">
+      <AddPost />
       <ListNavBar />
       <WantedList list={tempWantedListData} />
     </div>
