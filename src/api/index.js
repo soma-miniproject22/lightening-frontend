@@ -48,6 +48,10 @@ class Api {
     return await handlePromiseGet('/posts', tags ? { tag: tags } : {});
   }
 
+  async pushPost(info) {
+    return await handlePromisePost('/posts', info);
+  }
+
   async toggleEye() {
     return await handlePromiseGet('/toggleEye');
   }
@@ -63,25 +67,37 @@ class Api {
 
 export default new Api();
 
-// /*
-//   {headers: authHeader()}
-//   Record<string, string>
-// */
-// function authHeader(Iany) {
-//   const tokenStr = localStorage.getItem('accessToken');
-//   return tokenStr
-//     ? {
-//       headers: { 'Authorization': tokenStr },
-//       ...Iany,
-//     }
-//     : { ...Iany };
-// }
+/*
+  {headers: authHeader()}
+  Record<string, string>
+*/
+function authHeader(token) {
+  // eslint-disable-next-line no-unused-vars
+  return token
+    ? {
+        headers: { Authorization: token },
+      }
+    : {};
+}
 
 // eslint-disable-next-line no-unused-vars
 const handlePromiseGet = async (url, params = {}) => {
   return new Promise((resolve, reject) => {
     Interceptor.getInstance()
       .get(CONFIG.API_SERVER + url, { params: params })
+      .then((res) => res.data)
+      .then((res) => {
+        if (!res.error) resolve(res.data);
+        throw new Error(res.error);
+      })
+      .catch((e) => reject(e));
+  });
+};
+
+const handlePromisePost = async (url, params = {}, token = '') => {
+  return new Promise((resolve, reject) => {
+    Interceptor.getInstance()
+      .post(CONFIG.API_SERVER + url, params, authHeader(token))
       .then((res) => res.data)
       .then((res) => {
         if (!res.error) resolve(res.data);
