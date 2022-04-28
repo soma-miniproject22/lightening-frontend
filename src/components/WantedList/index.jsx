@@ -2,7 +2,7 @@ import './index.css';
 
 import React from 'react';
 import { List } from 'semantic-ui-react';
-import Api from '../../Api';
+import Api from '../../api';
 
 const CURRENT_CATEGORY = '모두 표시'; // MEAL, COFFEE, ALCOHOL, GAME, ETC
 const MAX_NAMES_TO_DISPLAY = 2;

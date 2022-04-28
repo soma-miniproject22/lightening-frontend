@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Input, Button } from 'semantic-ui-react';
-import Api from '../Api';
+import Api from '../api';
 import NavBar from '../components/ListNavBar';
 
 const AddPost = () => {

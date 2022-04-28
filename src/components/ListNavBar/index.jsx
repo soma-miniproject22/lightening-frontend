@@ -1,5 +1,5 @@
 import React from 'react';
-import Api from '../../Api';
+import Api from '../../api';
 import './index.css';
 
 const NavBar = () => {

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Api from './Api';
+import Api from './api';
 
 import WantedList from './components/WantedList';
 import ListNavBar from './components/ListNavBar';
