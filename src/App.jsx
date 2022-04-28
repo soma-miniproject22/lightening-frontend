@@ -1,5 +1,5 @@
-// import { useEffect } from 'react';
-// import Api from './api/Api';
+import { useEffect } from 'react';
+import Api from './api';
 
 import WantedList from './components/WantedList';
 import ListNavBar from './components/ListNavBar';
@@ -10,6 +10,7 @@ import kSoup from './assets/img/k-soup.png';
 import board2 from './assets/img/board2.jpg';
 import subway from './assets/img/subway.png';
 import walk from './assets/img/walk.jpg';
+import AddPostBtn from './components/AddPostBtn';
 
 const tempOriginal = [
   {
@@ -59,11 +60,12 @@ const tempWantedListData = [0, 1, 2, 3, 4, 5].reduce((prev, idx) => {
 }, []);
 
 function App() {
-  // useEffect(() => {
-  //   data = await Api.getCards(); <- 이런거 부르면됩니다.
-  // }, []);
+  useEffect(() => {
+    console.log(Api.getPosts()); // TODO: Post 업데이트
+  }, []);
   return (
     <div className="App">
+      <AddPostBtn />
       <ListNavBar />
       <WantedList list={tempWantedListData} />
     </div>
