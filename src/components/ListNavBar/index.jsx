@@ -1,9 +1,16 @@
 import React from 'react';
-import Api from '../../api';
 import { Button } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
+import Api from '../../api';
 import './index.css';
 
 const NavBar = () => {
+  const navigate = useNavigate();
+
+  const moveToIndexPage = () => {
+    return navigate('/');
+  };
+
   const handleSignin = () => {
     Api.signin().then((res) => {
       if (res) window.location.href = res.response;
@@ -13,7 +20,7 @@ const NavBar = () => {
 
   return (
     <header className="l-list-navbar-root">
-      <div className="l-list-navbar-logo-container">
+      <div className="l-list-navbar-logo-container" onClick={moveToIndexPage}>
         <span className="ec ec-zap l-list-navbar-logo" />
         <h1 className="l-list-navbar-title title-1">소마</h1>
         <h1 className="l-list-navbar-title title-2">번</h1>
