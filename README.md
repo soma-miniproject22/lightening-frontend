@@ -4,9 +4,10 @@
 
 사용 중인 리소스:
 
-- Emoji CSS: https://ionicabizau.github.io/emoji.css/
+- Emoji CSS: https://ionicabizau.github.io/emoji.css/ - 기본 이모지 묶음
 - Semantic UI
 - IBM Plex Sans (Google Web Fonts)
+- icongr.am: https://icongr.am/ - 아이콘 하나 단위로 이미지로 가져오는 사이트
 
 ### TODO
 
