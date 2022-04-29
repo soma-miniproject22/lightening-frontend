@@ -3,6 +3,8 @@ import './index.css';
 import React from 'react';
 import { List, Popup } from 'semantic-ui-react';
 import Api from '../../api';
+import interesting from '../../assets/icons/thinkspin.gif';
+import handWave from '../../assets/icons/hand_wave.gif';
 
 const CURRENT_CATEGORY = '모두 표시'; // MEAL, COFFEE, ALCOHOL, GAME, ETC
 const MAX_NAMES_TO_DISPLAY = 2;
@@ -66,15 +68,23 @@ const WantedList = ({ list }) => {
               </List.Description>
               <List.Description className="b-list-item-emoji-root-container">
                 <div
-                  className={`cursor-pointer b-list-item-emoji-each-container${
-                    isEyesSelected ? '-selected' : ''
-                  }`}
+                  className={
+                    'b-list-item-emoji-each-container' +
+                    (isEyesSelected ? ' selected' : '')
+                  }
                   onClick={handleEye}
                 >
                   <Popup
                     trigger={
                       <div>
-                        <span>{eyesCount}</span>
+                        <img
+                          className="b-list-item-emoji-interest"
+                          src={interesting}
+                          alt="interesting"
+                        />
+                        <span className="b-list-item-emoji-counter">
+                          {eyesCount}
+                        </span>
                       </div>
                     }
                     content="김성빈 이형창"
@@ -82,16 +92,21 @@ const WantedList = ({ list }) => {
                   />
                 </div>
                 <div
-                  className={`cursor-pointer b-list-item-emoji-each-container${
-                    isParticipating ? '-selected' : ''
-                  }`}
+                  className={
+                    'b-list-item-emoji-each-container' +
+                    (isParticipating ? ' selected' : '')
+                  }
                   onClick={handleHand}
                 >
                   <Popup
                     trigger={
                       <div>
-                        <span className="ec ec-raised-hand-with-fingers-splayed"></span>
-                        <span>
+                        <img
+                          className="b-list-item-emoji-handwave"
+                          src={handWave}
+                          alt="hand wave"
+                        />
+                        <span className="b-list-item-emoji-counter">
                           {handsCount} {names}
                         </span>
                       </div>

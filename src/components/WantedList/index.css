@@ -17,11 +17,22 @@
 }
 
 .b-list-item.b-list-item-closed {
-  background: rgba(218, 218, 218, 0.4);
+  background: rgba(218, 218, 218, 0.15);
 }
 
 .b-list-item.b-list-item-closed > .b-list-item-content > * {
-  color: rgba(0, 0, 0, 0.3) !important;
+  color: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* closed case 추가 */
+.b-list-item.b-list-item-closed .b-list-item-emoji-each-container.selected {
+  /* background: linear-gradient(70deg, pink, plum, palevioletred); */
+  background: linear-gradient(
+    70deg,
+    rgba(255, 192, 203, 0.2),
+    rgba(221, 160, 221, 0.2),
+    rgba(216, 112, 147, 0.2)
+  );
 }
 
 .b-list-item-header {
@@ -59,24 +70,35 @@
   margin-top: 0.25em !important;
 }
 
-.b-list-item-emoji-root-container i {
-  font-size: 1.3em;
-}
-
 .b-list-item-emoji-each-container {
   border-radius: 1em;
   padding: 8px;
-  background: gainsboro;
+  background: rgba(190, 190, 190, 0.2);
 
   margin-left: 0.25em;
 }
 
-.b-list-item-emoji-each-container-selected {
+.b-list-item-emoji-each-container > div {
+  /* 이모지와 카운터 숫자 정렬 */
+  display: flex;
+  align-items: flex-end;
+}
+
+.b-list-item-emoji-each-container.selected {
   border-radius: 1em;
   padding: 8px;
   background: linear-gradient(70deg, pink, plum, palevioletred);
 
   margin-left: 0.25em;
+}
+
+.b-list-item-emoji-interest,
+.b-list-item-emoji-handwave {
+  width: 1.5em;
+}
+
+.b-list-item-emoji-counter {
+  font-size: 1em;
 }
 
 .b-list-item-thumb {
