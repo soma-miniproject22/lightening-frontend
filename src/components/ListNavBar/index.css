@@ -12,6 +12,8 @@
 .l-list-navbar-logo-container {
   display: flex !important;
   flex-direction: row !important;
+
+  cursor: pointer;
 }
 
 .l-list-navbar-logo {

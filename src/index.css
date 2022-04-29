@@ -3,6 +3,10 @@ body {
   font-family: 'IBM Plex Sans KR', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* unselectable */
+  /* 드래그해서 파랗게 뜨면 이상하기 때문에. */
+  user-select: none;
 }
 
 code {
