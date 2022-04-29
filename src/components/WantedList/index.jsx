@@ -1,7 +1,7 @@
 import './index.css';
 
 import React from 'react';
-import { List } from 'semantic-ui-react';
+import { List, Popup } from 'semantic-ui-react';
 import Api from '../../api';
 
 const CURRENT_CATEGORY = '모두 표시'; // MEAL, COFFEE, ALCOHOL, GAME, ETC
@@ -81,9 +81,15 @@ const WantedList = ({ list }) => {
                   onClick={handleHand}
                 >
                   <span className="ec ec-raised-hand-with-fingers-splayed"></span>
-                  <span>
-                    {handsCount} {names}
-                  </span>
+                  <Popup
+                    trigger={
+                      <span>
+                        {handsCount} {names}
+                      </span>
+                    }
+                    content="이상빈 김민겸 김수홍 이형창"
+                    inverted
+                  />
                 </div>
               </List.Description>
             </List.Content>
