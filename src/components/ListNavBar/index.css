@@ -7,6 +7,9 @@
   background: white;
   padding: 0.5em;
   border-bottom: 1px solid black;
+
+  display: flex;
+  justify-content: space-between;
 }
 
 .l-list-navbar-logo-container {
@@ -39,4 +42,46 @@
 .l-list-navbar-title.title-3 {
   margin-left: 0 !important;
   color: orangered;
+}
+
+/* 헤더 우측 영역 */
+.b-list-navbar-menu-container {
+  margin-right: 0.5em;
+
+  /* 메뉴 영역의 세로 정렬을 위함 */
+  display: flex;
+  align-items: center;
+}
+
+.b-list-navbar-login-btn {
+  /* 기본 버튼이 애매해서 변경 */
+  font-size: 1em !important;
+  padding: 0.5em 1em !important;
+
+  background: linear-gradient(
+      180deg,
+      rgba(52, 183, 89, 0.15) 0%,
+      rgba(46, 164, 79, 0) 100%
+    ),
+    #2ea44f !important;
+  color: white !important;
+  font-family: 'Alliance No.1', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    sans-serif !important;
+}
+
+.b-list-navbar-login-btn:hover {
+  background: rgba(46, 164, 79, 0.8) !important;
+}
+
+/* pressed */
+.b-list-navbar-login-btn:active {
+  background: rgba(46, 164, 79, 0.9) !important;
+}
+
+.b-list-navbar-github-logo {
+  vertical-align: text-bottom;
+
+  width: 1.5em;
+  margin-right: 0.5em;
 }
