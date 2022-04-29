@@ -49,9 +49,11 @@ const WantedList = ({ list }) => {
             className={'b-list-item' + (isClosed ? ' b-list-item-closed' : '')}
             key={id}
           >
-            <div className="thumb-container">
-              <img src={thumbnailImage} className="thumb" alt="thumbnail" />
-            </div>
+            <img
+              src={thumbnailImage}
+              className="b-list-item-thumb"
+              alt="thumbnail"
+            />
             <List.Content className="b-list-item-content">
               <List.Header className="b-list-item-header">
                 {authorName}

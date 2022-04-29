@@ -79,35 +79,12 @@
   margin-left: 0.25em;
 }
 
-.thumb-container {
-  width: 74px;
-  height: 74px;
-
-  margin-right: 0.5em;
-  position: relative;
-  vertical-align: top;
-}
-
-.thumb {
-  width: 74px;
-  height: 74px;
-  aspect-ratio: auto 74 / 74;
+.b-list-item-thumb {
+  width: 6em;
+  height: 6em;
 
   border-radius: 36%;
-  background-size: 74px 74px;
-}
+  background-size: 6em 6em;
 
-/* radius를 비선형적으로 깎는 방법 (안드로이드 앱 아이콘 같이) */
-/* bg가 감싸지는 원리는 모르겠음 */
-/* 출처: 네이버 카페 모바일 페이지 CSS */
-.thumb-container::after {
-  background-image: url(https://ca-fe.pstatic.net/web-mobile/static/img/ios-cover-mask-47.svg?e93387ec0d01d47c3139b99acbd95cf3https://ca-fe.pstatic.net/web-mobile/static/img/io…over-mask-47.svg?e93387ec0d01d47c3139b99acbd95cf3);
-  opacity: 100%;
-  background-size: 74px 74px;
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  margin-right: 0.5em;
 }
