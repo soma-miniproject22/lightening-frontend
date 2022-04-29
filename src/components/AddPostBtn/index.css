@@ -24,7 +24,7 @@
   padding: 0;
 
   /* 버튼 배경색 */
-  background-color: orangered;
+  background-color: tomato;
 
   border-radius: 50%;
   transition: 0.3s;
@@ -44,7 +44,7 @@
   position: relative;
 }
 
-.btn-large span {
+.btn-large i {
   opacity: 1;
   transition: transform 300ms, opacity 300ms;
 
@@ -52,7 +52,7 @@
   font-size: 1.6rem;
 
   /* 없으면 중앙 배치가 안 됨... */
-  margin-left: 14px;
+  margin-left: 0.85em;
 }
 
 .fixed-action-btn.spin-close .btn-large:before {
@@ -90,7 +90,7 @@
   opacity: 0;
 }
 
-.fixed-action-btn.active span {
+.fixed-action-btn.active i {
   opacity: 0;
 }
 

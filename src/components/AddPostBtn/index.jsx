@@ -27,7 +27,8 @@ const AddPostBtn = () => {
     >
       <div className="btn-floating btn-large red" onClick={toggle}>
         {/* 번개 모양 아이콘! */}
-        <span class="ec ec-zap"></span>
+        {/* emoji --> Font Awesome으로 변경 */}
+        <i class="fa-solid fa-bolt"></i>
       </div>
     </div>
   );
