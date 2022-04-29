@@ -1,7 +1,105 @@
-#add_post {
+.fixed-action-btn {
+  padding: 0 0 0 15px;
   position: fixed;
-  font-size: 3em;
-  right: 10px;
-  bottom: 10px;
+
+  right: 1em;
+  bottom: 1em;
+
+  margin-bottom: 0;
+  z-index: 998;
+}
+
+.btn-floating {
+  display: inline-block;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  /* small  btn */
+  width: 40px;
+  height: 40px;
+
+  line-height: 40px;
+  padding: 0;
+
+  /* 버튼 배경색 */
+  background-color: orangered;
+
+  border-radius: 50%;
+  transition: 0.3s;
   cursor: pointer;
+  vertical-align: middle;
+
+  box-shadow: 0 3px 3px 0 rgb(0 0 0 / 14%), 0 1px 7px 0 rgb(0 0 0 / 12%),
+    0 3px 1px -1px rgb(0 0 0 / 20%);
+}
+
+.btn-floating.btn-large {
+  width: 56px;
+  height: 56px;
+}
+
+.btn-large {
+  position: relative;
+}
+
+.btn-large span {
+  opacity: 1;
+  transition: transform 300ms, opacity 300ms;
+
+  line-height: 56px;
+  font-size: 1.6rem;
+
+  /* 없으면 중앙 배치가 안 됨... */
+  margin-left: 14px;
+}
+
+.fixed-action-btn.spin-close .btn-large:before {
+  transition: transform 300ms, opacity 300ms;
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.64rem;
+  height: 2px;
+  background: white;
+  margin-top: -2px;
+  margin-left: -0.82em;
+  transform: rotate(0);
+  opacity: 0;
+}
+
+.fixed-action-btn.spin-close.active .btn-large:before {
+  opacity: 1;
+  transform: rotate(135deg);
+}
+
+.fixed-action-btn.spin-close .btn-large:after {
+  transition: transform 300ms, opacity 300ms;
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.64rem;
+  height: 2px;
+  background: white;
+  margin-top: -2px;
+  margin-left: -0.82em;
+  transform: rotate(0);
+  opacity: 0;
+}
+
+.fixed-action-btn.active span {
+  opacity: 0;
+}
+
+.fixed-action-btn.spin-close.active .btn-large:before {
+  opacity: 1;
+  transform: rotate(135deg);
+}
+
+.fixed-action-btn.spin-close.active .btn-large:after {
+  opacity: 1;
+  transform: rotate(405deg);
 }

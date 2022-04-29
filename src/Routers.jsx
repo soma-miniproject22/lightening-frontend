@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import App from './App';
 import AddPost from './pages/AddPost';
 import Redirect from './pages/Redirect';
+import AddPostBtn from './components/AddPostBtn';
 
 export const UserContext = createContext({
   token: '',
@@ -19,6 +20,7 @@ const Routers = () => {
   return (
     <UserContext.Provider value={value}>
       <Router>
+        <AddPostBtn />
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/redirect" element={<Redirect />} />
