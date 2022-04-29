@@ -71,8 +71,11 @@ const WantedList = ({ list }) => {
                   }`}
                   onClick={handleEye}
                 >
-                  <span className="ec ec-eyes"></span>
-                  <span>{eyesCount}</span>
+                  <Popup
+                    trigger={<span className="ec ec-eyes">{eyesCount}</span>}
+                    content="김성빈 이형창"
+                    inverted
+                  />
                 </div>
                 <div
                   className={`cursor-pointer b-list-item-emoji-each-container${
@@ -87,7 +90,7 @@ const WantedList = ({ list }) => {
                         {handsCount} {names}
                       </span>
                     }
-                    content="이상빈 김민겸 김수홍 이형창"
+                    content="김성빈 이형창"
                     inverted
                   />
                 </div>
