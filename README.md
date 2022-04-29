@@ -4,10 +4,10 @@
 
 사용 중인 리소스:
 
-- Emoji CSS: https://ionicabizau.github.io/emoji.css/ - 기본 이모지 묶음
 - Semantic UI
 - IBM Plex Sans (Google Web Fonts)
 - icongr.am: https://icongr.am/ - 아이콘 하나 단위로 이미지로 가져오는 사이트
+- Font Awesome 5 (`/css`, `/webfonts`)
 
 ### TODO
 
@@ -24,7 +24,7 @@
 - [ ] 글쓰기 페이지 UX 개선
 - [ ] 페이지 간 트랜지션 ( 관련 Lib 사용 )
 - [ ] 로그인 상태 영구 보관/하이드레이션 필요 ( redux-persist 같이, 최소한 JWT 세션 동안은 로그인 유지 + 탭 간 유지 가능해야 )
-- [ ] 로그아웃 제공 필요할듯 
+- [ ] 로그아웃 제공 필요할듯
 - [ ] 알람 기능 연동 필요
 
 ### 페이지 흐름도

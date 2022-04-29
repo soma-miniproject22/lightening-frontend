@@ -52,7 +52,7 @@
   font-size: 1.6rem;
 
   /* 없으면 중앙 배치가 안 됨... */
-  margin-left: 0.85em;
+  margin-left: 0.95em;
 }
 
 .fixed-action-btn.spin-close .btn-large:before {

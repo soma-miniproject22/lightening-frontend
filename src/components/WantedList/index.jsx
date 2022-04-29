@@ -72,7 +72,11 @@ const WantedList = ({ list }) => {
                   onClick={handleEye}
                 >
                   <Popup
-                    trigger={<span className="ec ec-eyes">{eyesCount}</span>}
+                    trigger={
+                      <div>
+                        <span>{eyesCount}</span>
+                      </div>
+                    }
                     content="김성빈 이형창"
                     inverted
                   />
@@ -83,12 +87,14 @@ const WantedList = ({ list }) => {
                   }`}
                   onClick={handleHand}
                 >
-                  <span className="ec ec-raised-hand-with-fingers-splayed"></span>
                   <Popup
                     trigger={
-                      <span>
-                        {handsCount} {names}
-                      </span>
+                      <div>
+                        <span className="ec ec-raised-hand-with-fingers-splayed"></span>
+                        <span>
+                          {handsCount} {names}
+                        </span>
+                      </div>
                     }
                     content="김성빈 이형창"
                     inverted
