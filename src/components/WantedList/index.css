@@ -3,13 +3,15 @@
 }
 
 .b-list-root-category-title {
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 1.15em;
+  color: black;
+  font-size: 1em;
 
-  margin: 0.25em;
+  margin: 0.5em;
 }
 
 .b-list-item {
+  color: rgba(0, 0, 0, 0.9);
+
   padding: 0.5em !important;
   border: none !important;
 
@@ -36,7 +38,7 @@
 }
 
 .b-list-item-header {
-  font-size: 1.1em;
+  font-size: 1em;
   font-family: inherit !important;
   margin-bottom: 0.25em !important;
 }
@@ -51,16 +53,14 @@
 
 /* 가장 강조돼야 할 내용 */
 .b-list-item-body {
-  color: #333;
-  font-size: 1.3em;
-  line-height: 1.2em;
+  font-size: 1em;
+  line-height: 1em;
   letter-spacing: -0.03em;
   margin-bottom: 0.25em !important;
 }
 
 .b-list-item-date {
-  font-size: 1.2em;
-  color: grey;
+  font-size: 1em;
   margin-bottom: 0.25em !important;
 }
 
@@ -72,7 +72,7 @@
 
 .b-list-item-emoji-each-container {
   border-radius: 1em;
-  padding: 8px;
+  padding: 0.4em;
   background: rgba(190, 190, 190, 0.2);
 
   margin-left: 0.25em;
@@ -85,16 +85,12 @@
 }
 
 .b-list-item-emoji-each-container.selected {
-  border-radius: 1em;
-  padding: 8px;
   background: linear-gradient(70deg, pink, plum, palevioletred);
-
-  margin-left: 0.25em;
 }
 
 .b-list-item-emoji-interest,
 .b-list-item-emoji-handwave {
-  width: 1.5em;
+  width: 1.3em;
 }
 
 .b-list-item-emoji-counter {
@@ -102,11 +98,11 @@
 }
 
 .b-list-item-thumb {
-  width: 6em;
-  height: 6em;
+  width: 4em;
+  height: 4em;
 
-  border-radius: 36%;
-  background-size: 6em 6em;
+  border-radius: 50%;
+  background-size: 4em 4em;
 
   margin-right: 0.5em;
 }

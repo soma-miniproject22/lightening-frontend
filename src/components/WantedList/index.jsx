@@ -6,7 +6,7 @@ import Api from '../../api';
 import interesting from '../../assets/icons/thinkspin.gif';
 import handWave from '../../assets/icons/hand_wave.gif';
 
-const CURRENT_CATEGORY = '모두 표시'; // MEAL, COFFEE, ALCOHOL, GAME, ETC
+const CURRENT_CATEGORY = '정렬: 기본'; // MEAL, COFFEE, ALCOHOL, GAME, ETC
 const MAX_NAMES_TO_DISPLAY = 2;
 
 const WantedList = ({ list }) => {
