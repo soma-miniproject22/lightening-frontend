@@ -1,4 +1,7 @@
 body {
+  /* width 100% 넘는 게 없는데 스크롤이 돼서 막음 */
+  overflow-x: none;
+
   background-color: #fcfcfc;
 
   margin: 0;
