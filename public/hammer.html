@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- HammerJs (touch events) -->
+    <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
+    <style>
+      .root-container {
+      }
+
+      .item-container {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .bg {
+        width: 100%;
+        height: 5em;
+        /* 굳이 보더를 주는건 간격을 맞추기 위함 */
+        border: 1px solid linear-gradient(70deg, pink, plum, palevioletred);
+        background: linear-gradient(70deg, pink, plum, palevioletred);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        /* 이모지를 가쪽에서 어느 정도 떨어트리게 배치 */
+        box-sizing: border-box;
+        padding: 0 1em;
+      }
+
+      .bg-emoji {
+        width: 2em;
+      }
+
+      .bg-emoji-text {
+        vertical-align: super;
+        color: bisque;
+      }
+
+      .fg {
+        transition-timing-function: ease-in-out;
+
+        /* flex를 쓰면 margin-left로 쉽게 처리 가능 */
+        /* 굳이 absolute + offset 쓸 필요가 없다! */
+        margin-left: -100%;
+        width: 100%;
+        height: 5em;
+        border: 1px solid black;
+        background: white;
+      }
+    </style>
+    <title>HammerJs Example</title>
+  </head>
+  <body>
+    <div class="root-container">
+      <div class="item-container">
+        <div class="bg" id="bg">
+          <div>
+            <img src="./thinkspin.gif" class="bg-emoji" />
+            <span class="bg-emoji-text">관심!</span>
+          </div>
+          <div>
+            <img src="./hand_wave.gif" class="bg-emoji" />
+            <span class="bg-emoji-text">참여!</span>
+          </div>
+        </div>
+        <div class="fg" id="fg">fg</div>
+      </div>
+      <div class="item-container">
+        <div class="bg">bg-none</div>
+        <div class="fg">fg-none</div>
+      </div>
+    </div>
+    <script>
+      const fgElem = document.getElementById('fg');
+      const bgElem = document.getElementById('bg');
+      const fg = new Hammer(fgElem);
+
+      fg.on('panmove', (e) => {
+        // console.log(e);
+        fgElem.style.transitionDuration = '5ms';
+        fgElem.style.transitionTimingFunction = 'ease-in-out';
+        fgElem.style.transform = `translateX(${e.deltaX}px)`;
+
+        // Math.min(e.distance, 255);
+        // bgElem.style.background = 'rgba()'; // 흰색이었다가 가장 바깥에서 흰색, 중앙일 때 초록색
+      });
+
+      // panmove 가 아니라 blur일 때 돌아오게 하는 방법 = ? panend 쓰면 됨.
+      fg.on('panend', (e) => {
+        console.log('Pan-end evt!');
+        fgElem.style.transitionDuration = '500ms';
+        fgElem.style.transform = 'translateX(0px)';
+      });
+
+      // 중간까지 가면 swipe으로 인식하고, 액션을 수행함!
+      // left, right는 도달되는 위치를 의미함.
+      fg.on('swipeleft', (e) => {
+        console.log('swiped [right->left] dragged from right: ', e);
+      });
+      fg.on('swiperight', (e) => {
+        console.log('swiped [left->right] dragged from left: ', e);
+        // 근데 이건 그냥 style 조정보단 액션 트리거 정도만 있을듯?
+      });
+    </script>
+  </body>
+</html>

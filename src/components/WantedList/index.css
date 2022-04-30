@@ -91,7 +91,8 @@
 
 .b-list-item-emoji-each-container {
   border-radius: 1em;
-  padding: 0.4em;
+
+  padding: 0.4em 0.6em;
   background: rgba(190, 190, 190, 0.2);
 
   margin-left: 0.25em;
@@ -114,6 +115,8 @@
 
 .b-list-item-emoji-counter {
   font-size: 1em;
+  line-height: 1em;
+  color: #333;
 }
 
 .b-list-item-thumb {
