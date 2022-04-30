@@ -21,7 +21,7 @@ const NavBar = () => {
   return (
     <header className="l-list-navbar-root">
       <div className="l-list-navbar-logo-container" onClick={moveToIndexPage}>
-        <i class="fas fa-bolt l-list-navbar-logo"></i>
+        <i className="fas fa-bolt l-list-navbar-logo"></i>
         <h1 className="l-list-navbar-title title-1">소마</h1>
         <h1 className="l-list-navbar-title title-2">번</h1>
         <h1 className="l-list-navbar-title title-3">개</h1>

@@ -9,9 +9,13 @@
   margin: 0.5em;
 }
 
-.b-list-item {
-  color: rgba(0, 0, 0, 0.9);
+.b-list-fg-bg-container {
+  display: flex;
+}
 
+.b-list-item {
+  width: 100% !important;
+  color: rgba(0, 0, 0, 0.9);
   padding: 0.5em !important;
   border: none !important;
 
@@ -19,7 +23,7 @@
 }
 
 .b-list-item.b-list-item-closed {
-  background: rgba(218, 218, 218, 0.15);
+  background: rgb(44, 44, 44);
 }
 
 .b-list-item.b-list-item-closed > .b-list-item-content > * {
@@ -105,4 +109,39 @@
   background-size: 4em 4em;
 
   margin-right: 0.5em;
+}
+
+/* 배경 */
+.fg {
+  transition-timing-function: ease-in-out;
+
+  /* flex를 쓰면 margin-left로 쉽게 처리 가능 */
+  /* 굳이 absolute + offset 쓸 필요가 없다! */
+  width: 100%;
+  margin-left: -100%;
+  background: #fcfcfc !important;
+}
+
+.bg {
+  width: 100%;
+  /* 굳이 보더를 주는건 간격을 맞추기 위함 */
+  background: linear-gradient(70deg, #ff6347, #f7cb15, palevioletred);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* 이모지를 가쪽에서 어느 정도 떨어트리게 배치 */
+  box-sizing: border-box;
+  padding: 0 1em;
+}
+
+.bg-emoji {
+  width: 2em;
+}
+
+.bg-emoji-text {
+  vertical-align: super;
+  color: bisque;
+  margin: 0.5em;
 }

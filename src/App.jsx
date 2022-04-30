@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Api from './api';
+// import Api from './api';
 
 import WantedList from './components/WantedList';
 import ListNavBar from './components/ListNavBar';
@@ -60,7 +60,7 @@ const tempWantedListData = [0, 1, 2, 3, 4, 5].reduce((prev, idx) => {
 
 function App() {
   useEffect(() => {
-    console.log(Api.getPosts()); // TODO: Post 업데이트
+    // console.log(Api.getPosts()); // TODO: Post 업데이트
   }, []);
   return (
     <div className="App">

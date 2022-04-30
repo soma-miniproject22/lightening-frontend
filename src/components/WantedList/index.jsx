@@ -1,9 +1,10 @@
 import './index.css';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { List, Popup } from 'semantic-ui-react';
 import Api from '../../api';
 import interesting from '../../assets/icons/thinkspin.gif';
+import thinkSpin from '../../assets/icons/thinkspin.gif';
 import handWave from '../../assets/icons/hand_wave.gif';
 
 const CURRENT_CATEGORY = '정렬: 기본'; // MEAL, COFFEE, ALCOHOL, GAME, ETC
@@ -21,6 +22,39 @@ const WantedList = ({ list }) => {
       if (res) console.log('toggle handle success'); // TODO: update handle
     });
   };
+
+  // 스와이프 이벤트 등록
+  // Only once
+  // HammerJs가 React ^16.0 이어서 이게 최선...
+  useEffect(() => {
+    const items = Array.from(
+      document.querySelectorAll('.b-list-item.fg:not(.b-list-item-closed)'),
+    );
+
+    items.forEach((fgElem) => {
+      /* eslint-disable */
+      const fg = new Hammer(fgElem);
+
+      fg.on('panmove', (e) => {
+        fgElem.style.transitionDuration = '5ms';
+        fgElem.style.transitionTimingFunction = 'ease-in-out';
+        fgElem.style.transform = `translateX(${e.deltaX}px)`;
+      });
+
+      fg.on('panend', () => {
+        console.log('Pan-end evt!');
+        fgElem.style.transitionDuration = '500ms';
+        fgElem.style.transform = 'translateX(0px)';
+      });
+
+      fg.on('swipeleft', (e) => {
+        console.log('swiped [right->left] dragged from right: ', e);
+      });
+      fg.on('swiperight', (e) => {
+        console.log('swiped [left->right] dragged from left: ', e);
+      });
+    });
+  }, []);
 
   return (
     <List divided relaxed className="b-list-root">
@@ -47,77 +81,96 @@ const WantedList = ({ list }) => {
         const isClosed = Math.random() < 0.25;
 
         return (
-          <List.Item
-            className={'b-list-item' + (isClosed ? ' b-list-item-closed' : '')}
-            key={id}
-          >
-            <img
-              src={thumbnailImage}
-              className="b-list-item-thumb"
-              alt="thumbnail"
-            />
-            <List.Content className="b-list-item-content">
-              <List.Header className="b-list-item-header">
-                {authorName}
-              </List.Header>
-              <List.Description className="b-list-item-body">
-                {messageBody}
-              </List.Description>
-              <List.Description className="b-list-item-date">
-                {beginAt}
-              </List.Description>
-              <List.Description className="b-list-item-emoji-root-container">
-                <div
-                  className={
-                    'b-list-item-emoji-each-container' +
-                    (isEyesSelected ? ' selected' : '')
-                  }
-                  onClick={handleEye}
-                >
-                  <Popup
-                    trigger={
-                      <div>
-                        <img
-                          className="b-list-item-emoji-interest"
-                          src={interesting}
-                          alt="interesting"
-                        />
-                        <span className="b-list-item-emoji-counter">
-                          {eyesCount}
-                        </span>
-                      </div>
+          <div className="b-list-fg-bg-container" key={id}>
+            <List.Item
+              className={
+                'b-list-item bg' + (isClosed ? ' b-list-item-closed' : '')
+              }
+            >
+              <div>
+                <img src={thinkSpin} alt="think spin" className="bg-emoji" />
+                <span className="bg-emoji-text">관심!</span>
+              </div>
+              <div>
+                <img src={handWave} alt="hand wave" className="bg-emoji" />
+                <span className="bg-emoji-text">참여!</span>
+              </div>
+            </List.Item>
+            <List.Item
+              className={
+                'b-list-item fg' + (isClosed ? ' b-list-item-closed' : '')
+              }
+              key={id}
+              id="fg"
+            >
+              <img
+                src={thumbnailImage}
+                className="b-list-item-thumb"
+                alt="thumbnail"
+              />
+              <List.Content className="b-list-item-content">
+                <List.Header className="b-list-item-header">
+                  {authorName}
+                </List.Header>
+                <List.Description className="b-list-item-body">
+                  {messageBody}
+                </List.Description>
+                <List.Description className="b-list-item-date">
+                  {beginAt}
+                </List.Description>
+                <List.Description className="b-list-item-emoji-root-container">
+                  <div
+                    className={
+                      'b-list-item-emoji-each-container' +
+                      (isEyesSelected ? ' selected' : '')
                     }
-                    content="김성빈 이형창"
-                    inverted
-                  />
-                </div>
-                <div
-                  className={
-                    'b-list-item-emoji-each-container' +
-                    (isParticipating ? ' selected' : '')
-                  }
-                  onClick={handleHand}
-                >
-                  <Popup
-                    trigger={
-                      <div>
-                        <img
-                          className="b-list-item-emoji-handwave"
-                          src={handWave}
-                          alt="hand wave"
-                        />
-                        <span className="b-list-item-emoji-counter">
-                          {handsCount} {names}
-                        </span>
-                      </div>
+                    onClick={handleEye}
+                  >
+                    <Popup
+                      trigger={
+                        <div>
+                          <img
+                            className="b-list-item-emoji-interest"
+                            src={interesting}
+                            alt="interesting"
+                          />
+                          <span className="b-list-item-emoji-counter">
+                            {eyesCount}
+                          </span>
+                        </div>
+                      }
+                      content="김성빈 이형창"
+                      inverted
+                    />
+                  </div>
+                  <div
+                    className={
+                      'b-list-item-emoji-each-container' +
+                      (isParticipating ? ' selected' : '')
                     }
-                    content="김성빈 이형창"
-                    inverted
-                  />
-                </div>
-              </List.Description>
-            </List.Content>
-          </List.Item>
+                    onClick={handleHand}
+                  >
+                    <Popup
+                      trigger={
+                        <div>
+                          <img
+                            className="b-list-item-emoji-handwave"
+                            src={handWave}
+                            alt="hand wave"
+                          />
+                          <span className="b-list-item-emoji-counter">
+                            {handsCount} {names}
+                          </span>
+                        </div>
+                      }
+                      content="김성빈 이형창"
+                      inverted
+                    />
+                  </div>
+                </List.Description>
+              </List.Content>
+            </List.Item>
+          </div>
         );
       })}
     </List>
