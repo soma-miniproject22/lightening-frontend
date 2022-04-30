@@ -30,7 +30,8 @@
   opacity: 0.5;
 }
 
-.b-list-item.closed > .b-list-item-content > * {
+.b-list-item.closed > .b-list-item-content,
+.b-list-item.closed .b-list-item-emoji-counter {
   color: rgba(0, 0, 0, 0.2) !important;
 }
 
