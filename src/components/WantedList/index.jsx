@@ -28,7 +28,7 @@ const WantedList = ({ list }) => {
   // HammerJs가 React ^16.0 이어서 이게 최선...
   useEffect(() => {
     const items = Array.from(
-      document.querySelectorAll('.b-list-item.fg:not(.b-list-item-closed)'),
+      document.querySelectorAll('.b-list-item.fg:not(.closed)'),
     );
 
     items.forEach((fgElem) => {
@@ -42,16 +42,16 @@ const WantedList = ({ list }) => {
       });
 
       fg.on('panend', () => {
-        console.log('Pan-end evt!');
+        // console.log('Pan-end evt!');
         fgElem.style.transitionDuration = '500ms';
         fgElem.style.transform = 'translateX(0px)';
       });
 
       fg.on('swipeleft', (e) => {
-        console.log('swiped [right->left] dragged from right: ', e);
+        // console.log('swiped [right->left] dragged from right: ', e);
       });
       fg.on('swiperight', (e) => {
-        console.log('swiped [left->right] dragged from left: ', e);
+        // console.log('swiped [left->right] dragged from left: ', e);
       });
     });
   }, []);
@@ -83,9 +83,7 @@ const WantedList = ({ list }) => {
         return (
           <div className="b-list-fg-bg-container" key={id}>
             <List.Item
-              className={
-                'b-list-item bg' + (isClosed ? ' b-list-item-closed' : '')
-              }
+              className={'b-list-item bg' + (isClosed ? ' closed' : '')}
             >
               <div>
                 <img src={thinkSpin} alt="think spin" className="bg-emoji" />
@@ -97,9 +95,7 @@ const WantedList = ({ list }) => {
               </div>
             </List.Item>
             <List.Item
-              className={
-                'b-list-item fg' + (isClosed ? ' b-list-item-closed' : '')
-              }
+              className={'b-list-item fg' + (isClosed ? ' closed' : '')}
               key={id}
               id="fg"
             >
@@ -115,57 +111,57 @@ const WantedList = ({ list }) => {
                 <List.Description className="b-list-item-body">
                   {messageBody}
                 </List.Description>
-                <List.Description className="b-list-item-date">
-                  {beginAt}
-                </List.Description>
-                <List.Description className="b-list-item-emoji-root-container">
-                  <div
-                    className={
-                      'b-list-item-emoji-each-container' +
-                      (isEyesSelected ? ' selected' : '')
-                    }
-                    onClick={handleEye}
-                  >
-                    <Popup
-                      trigger={
-                        <div>
-                          <img
-                            className="b-list-item-emoji-interest"
-                            src={interesting}
-                            alt="interesting"
-                          />
-                          <span className="b-list-item-emoji-counter">
-                            {eyesCount}
-                          </span>
-                        </div>
+                <List.Description className="b-list-footer">
+                  <div className="b-list-item-date">{beginAt}</div>
+                  <div className="b-list-item-emoji-root-container">
+                    <div
+                      className={
+                        'b-list-item-emoji-each-container' +
+                        (isEyesSelected ? ' selected' : '')
                       }
-                      content="김성빈 이형창"
-                      inverted
-                    />
-                  </div>
-                  <div
-                    className={
-                      'b-list-item-emoji-each-container' +
-                      (isParticipating ? ' selected' : '')
-                    }
-                    onClick={handleHand}
-                  >
-                    <Popup
-                      trigger={
-                        <div>
-                          <img
-                            className="b-list-item-emoji-handwave"
-                            src={handWave}
-                            alt="hand wave"
-                          />
-                          <span className="b-list-item-emoji-counter">
-                            {handsCount} {names}
-                          </span>
-                        </div>
+                      onClick={handleEye}
+                    >
+                      <Popup
+                        trigger={
+                          <div>
+                            <img
+                              className="b-list-item-emoji-interest"
+                              src={interesting}
+                              alt="interesting"
+                            />
+                            <span className="b-list-item-emoji-counter">
+                              {eyesCount}
+                            </span>
+                          </div>
+                        }
+                        content="김성빈 이형창"
+                        inverted
+                      />
+                    </div>
+                    <div
+                      className={
+                        'b-list-item-emoji-each-container' +
+                        (isParticipating ? ' selected' : '')
                       }
-                      content="김성빈 이형창"
-                      inverted
-                    />
+                      onClick={handleHand}
+                    >
+                      <Popup
+                        trigger={
+                          <div>
+                            <img
+                              className="b-list-item-emoji-handwave"
+                              src={handWave}
+                              alt="hand wave"
+                            />
+                            <span className="b-list-item-emoji-counter">
+                              {handsCount} {names}
+                            </span>
+                          </div>
+                        }
+                        content="김성빈 이형창"
+                        inverted
+                      />
+                    </div>
                   </div>
                 </List.Description>
               </List.Content>
