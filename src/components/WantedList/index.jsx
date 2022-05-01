@@ -137,7 +137,8 @@ const WantedList = () => {
           postContent,
           meetDate,
           emotions,
-          recruitEndDate
+          recruitEndDate,
+          maxCount
         }) => {
           // 각 라인 별 더미 데이터 생성 로직
           const isEyesSelected =
@@ -247,7 +248,7 @@ const WantedList = () => {
                                 alt="hand wave"
                               />
                               <span className="b-list-item-emoji-counter">
-                                {handsCount} {names}
+                                {handsCount}/{maxCount} {names}
                               </span>
                             </div>
                           }
