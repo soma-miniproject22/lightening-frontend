@@ -94,11 +94,11 @@ const WantedList = () => {
       });
 
       fg.on('swipeleft', () => {
-        toggleEye(dataId);
+        toggleHand(dataId);
       });
       
       fg.on('swiperight', () => {
-        toggleHand(dataId);
+        toggleEye(dataId);
       });
     });
   }
@@ -165,9 +165,7 @@ const WantedList = () => {
           const _names = emotions
             .filter((i) => i.emotionType === 'PARTICIPATE')
             .slice(0, Math.min(handsCount, MAX_NAMES_TO_DISPLAY)) // MAX 혹은 카운터 이상으로 표시 x
-            .map((i) => i.nickname)
-            // .map((e) => (Math.random() > 0.5 ? e : '')) // 50% 확률로 선택
-            // .filter((e) => !!e) // 빈 값 제외
+            .map((i) => `[${i.nickname}]`) // 이름 구분의 용이함 위해
             .join(' '); // 문자열로 반환
 
           const names =
