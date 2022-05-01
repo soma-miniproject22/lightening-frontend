@@ -126,6 +126,7 @@ const WantedList = () => {
           postContent,
           meetDate,
           emotions,
+          recruitEndDate
         }) => {
           // 각 라인 별 더미 데이터 생성 로직
           const isEyesSelected =
@@ -197,7 +198,7 @@ const WantedList = () => {
                           'b-list-item-emoji-each-container' +
                           (isEyesSelected ? ' selected' : '')
                         }
-                        onClick={handleEye.bind(this, postId)}
+                        onClick={toggleEye.bind(this, postId)}
                       >
                         <Popup
                           trigger={
@@ -224,7 +225,7 @@ const WantedList = () => {
                           'b-list-item-emoji-each-container' +
                           (isParticipating ? ' selected' : '')
                         }
-                        onClick={handleHand.bind(this, postId)}
+                        onClick={toggleHand.bind(this, postId)}
                       >
                         <Popup
                           trigger={
