@@ -7,7 +7,7 @@ import './index.css';
 
 const NavBar = () => {
   const navigate = useNavigate();
-  let { accessToken, userInfo } = useContext(UserContext);
+  const { accessToken, userInfo } = useContext(UserContext);
 
   const moveToIndexPage = () => {
     return navigate('/');
@@ -17,12 +17,6 @@ const NavBar = () => {
     Api.signin().then((res) => {
       if (res) window.location.href = res.response; // redirection to requested url
     });
-  };
-
-  accessToken = '111';
-  userInfo = {
-    nickname: '김성빈',
-    profileImage: 'https://avatars.githubusercontent.com/u/27149435?v=4',
   };
 
   return (
