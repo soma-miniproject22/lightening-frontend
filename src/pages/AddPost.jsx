@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Input, Button, Dropdown } from 'semantic-ui-react';
 import Api from '../api';
 import NavBar from '../components/ListNavBar';
@@ -57,7 +58,7 @@ const postTagOptions = [
 
 const AddPost = () => {
   const { accessToken } = useContext(UserContext);
-
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     content: '',
     appointmentDate: '',
@@ -77,7 +78,9 @@ const AddPost = () => {
         recruitEndDate: tempdate.toISOString().replace('Z', '+09:00'),
       },
       accessToken,
-    );
+    ).then((res) => {
+      navigate('/');
+    });
   };
 
   const handleChange = (e) => {
