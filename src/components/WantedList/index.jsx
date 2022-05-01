@@ -75,113 +75,142 @@ const WantedList = ({ list }) => {
     <List divided relaxed className="b-list-root">
       <div className="b-list-root-category-title">{CURRENT_CATEGORY}</div>
 
-      {list.map(({ postId, accountImage, nickname, postContent, meetDate, emotions }) => {
-        // 각 라인 별 더미 데이터 생성 로직
-        const isEyesSelected = emotions.filter( i => i.username === userInfo.username && i.emotionType === 'WILLING').length > 0;
-        const isParticipating = emotions.filter( i => i.username === userInfo.username && i.emotionType === 'PARTICIPATE').length > 0;
-        const eyesCount = emotions.filter( i => i.emotionType === 'WILLING').length;
-        const handsCount = emotions.filter( i => i.emotionType === 'PARTICIPATE').length;
-        const _names = emotions.filter( i => i.emotionType === 'PARTICIPATE')
-          .slice(0, Math.min(handsCount, MAX_NAMES_TO_DISPLAY)) // MAX 혹은 카운터 이상으로 표시 x
-          .map(i=>i.nickname)
-          // .map((e) => (Math.random() > 0.5 ? e : '')) // 50% 확률로 선택
-          // .filter((e) => !!e) // 빈 값 제외
-          .join(' '); // 문자열로 반환
+      {list.map(
+        ({
+          postId,
+          accountImage,
+          nickname,
+          postContent,
+          meetDate,
+          emotions,
+        }) => {
+          // 각 라인 별 더미 데이터 생성 로직
+          const isEyesSelected =
+            emotions.filter(
+              (i) =>
+                i.username === userInfo.username && i.emotionType === 'WILLING',
+            ).length > 0;
+          const isParticipating =
+            emotions.filter(
+              (i) =>
+                i.username === userInfo.username &&
+                i.emotionType === 'PARTICIPATE',
+            ).length > 0;
+          const eyesCount = emotions.filter(
+            (i) => i.emotionType === 'WILLING',
+          ).length;
+          const handsCount = emotions.filter(
+            (i) => i.emotionType === 'PARTICIPATE',
+          ).length;
+          const _names = emotions
+            .filter((i) => i.emotionType === 'PARTICIPATE')
+            .slice(0, Math.min(handsCount, MAX_NAMES_TO_DISPLAY)) // MAX 혹은 카운터 이상으로 표시 x
+            .map((i) => i.nickname)
+            // .map((e) => (Math.random() > 0.5 ? e : '')) // 50% 확률로 선택
+            // .filter((e) => !!e) // 빈 값 제외
+            .join(' '); // 문자열로 반환
 
-        const names =
-          _names + (_names.length > 0 && handsCount > 1 ? ' ...' : '');
+          const names =
+            _names + (_names.length > 0 && handsCount > 1 ? ' ...' : '');
 
-        const isClosed = Math.random() < 0.25;
+          const isClosed = Math.random() < 0.25;
 
-        return (
-          <div className="b-list-fg-bg-container" key={postId}>
-            <List.Item
-              className={'b-list-item bg' + (isClosed ? ' closed' : '')}
-            >
-              <div>
-                <img src={thinkSpin} alt="think spin" className="bg-emoji" />
-                <span className="bg-emoji-text">관심!</span>
-              </div>
-              <div>
-                <img src={handWave} alt="hand wave" className="bg-emoji" />
-                <span className="bg-emoji-text">참여!</span>
-              </div>
-            </List.Item>
-            <List.Item
-              className={'b-list-item fg' + (isClosed ? ' closed' : '')}
-              key={postId}
-              id="fg"
-            >
-              <img
-                src={accountImage}
-                className="b-list-item-thumb"
-                alt="thumbnail"
-              />
-              <List.Content className="b-list-item-content">
-                <List.Header className="b-list-item-header">
-                  {nickname}
-                </List.Header>
-                <List.Description className="b-list-item-body">
-                  {postContent}
-                </List.Description>
-                <List.Description className="b-list-footer">
-                  <div className="b-list-item-date">{meetDate}</div>
-                  <div className="b-list-item-emoji-root-container">
-                    <div
-                      className={
-                        'b-list-item-emoji-each-container' +
-                        (isEyesSelected ? ' selected' : '')
-                      }
-                      onClick={handleEye.bind(this,postId)}
-                    >
-                      <Popup
-                        trigger={
-                          <div>
-                            <img
-                              className="b-list-item-emoji-interest"
-                              src={interesting}
-                              alt="interesting"
-                            />
-                            <span className="b-list-item-emoji-counter">
-                              {eyesCount}
-                            </span>
-                          </div>
+          return (
+            <div className="b-list-fg-bg-container" key={postId}>
+              <List.Item
+                className={'b-list-item bg' + (isClosed ? ' closed' : '')}
+              >
+                <div>
+                  <img src={thinkSpin} alt="think spin" className="bg-emoji" />
+                  <span className="bg-emoji-text">관심!</span>
+                </div>
+                <div>
+                  <img src={handWave} alt="hand wave" className="bg-emoji" />
+                  <span className="bg-emoji-text">참여!</span>
+                </div>
+              </List.Item>
+              <List.Item
+                className={'b-list-item fg' + (isClosed ? ' closed' : '')}
+                key={postId}
+                id="fg"
+              >
+                <img
+                  src={accountImage}
+                  className="b-list-item-thumb"
+                  alt="thumbnail"
+                />
+                <List.Content className="b-list-item-content">
+                  <List.Header className="b-list-item-header">
+                    {nickname}
+                  </List.Header>
+                  <List.Description className="b-list-item-body">
+                    {postContent}
+                  </List.Description>
+                  <List.Description className="b-list-footer">
+                    <div className="b-list-item-date">{meetDate}</div>
+                    <div className="b-list-item-emoji-root-container">
+                      <div
+                        className={
+                          'b-list-item-emoji-each-container' +
+                          (isEyesSelected ? ' selected' : '')
                         }
-                        content={emotions.filter( i => i.emotionType === 'WILLING').map(i=>i.nickname).join(' ')}
-                        inverted
-                      />
-                    </div>
-                    <div
-                      className={
-                        'b-list-item-emoji-each-container' +
-                        (isParticipating ? ' selected' : '')
-                      }
-                      onClick={handleHand.bind(this,postId)}
-                    >
-                      <Popup
-                        trigger={
-                          <div>
-                            <img
-                              className="b-list-item-emoji-handwave"
-                              src={handWave}
-                              alt="hand wave"
-                            />
-                            <span className="b-list-item-emoji-counter">
-                              {handsCount} {names}
-                            </span>
-                          </div>
+                        onClick={handleEye.bind(this, postId)}
+                      >
+                        <Popup
+                          trigger={
+                            <div>
+                              <img
+                                className="b-list-item-emoji-interest"
+                                src={interesting}
+                                alt="interesting"
+                              />
+                              <span className="b-list-item-emoji-counter">
+                                {eyesCount}
+                              </span>
+                            </div>
+                          }
+                          content={emotions
+                            .filter((i) => i.emotionType === 'WILLING')
+                            .map((i) => i.nickname)
+                            .join(' ')}
+                          inverted
+                        />
+                      </div>
+                      <div
+                        className={
+                          'b-list-item-emoji-each-container' +
+                          (isParticipating ? ' selected' : '')
                         }
-                        content={emotions.filter( i => i.emotionType === 'PARTICIPATE').map(i=>i.nickname).join(' ')}
-                        inverted
-                      />
+                        onClick={handleHand.bind(this, postId)}
+                      >
+                        <Popup
+                          trigger={
+                            <div>
+                              <img
+                                className="b-list-item-emoji-handwave"
+                                src={handWave}
+                                alt="hand wave"
+                              />
+                              <span className="b-list-item-emoji-counter">
+                                {handsCount} {names}
+                              </span>
+                            </div>
+                          }
+                          content={emotions
+                            .filter((i) => i.emotionType === 'PARTICIPATE')
+                            .map((i) => i.nickname)
+                            .join(' ')}
+                          inverted
+                        />
+                      </div>
                     </div>
-                  </div>
-                </List.Description>
-              </List.Content>
-            </List.Item>
-          </div>
-        );
-      })}
+                  </List.Description>
+                </List.Content>
+              </List.Item>
+            </div>
+          );
+        },
+      )}
     </List>
   );
 };

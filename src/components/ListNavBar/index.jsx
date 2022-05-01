@@ -7,7 +7,7 @@ import './index.css';
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { accessToken } = useContext(UserContext);
+  const { accessToken, userInfo } = useContext(UserContext);
 
   const moveToIndexPage = () => {
     return navigate('/');
@@ -18,6 +18,7 @@ const NavBar = () => {
       if (res) window.location.href = res.response; // redirection to requested url
     });
   };
+
   return (
     <header className="l-list-navbar-root">
       <div className="l-list-navbar-logo-container" onClick={moveToIndexPage}>
@@ -37,7 +38,14 @@ const NavBar = () => {
             Login With GitHub
           </Button>
         ) : (
-          '로그인됨'
+          <div className="b-list-navbar-profile-container">
+            <img
+              src={userInfo.profileImage}
+              className="b-list-item-thumb"
+              alt="thumbnail"
+            />
+            <span className="b-list-navbar-nickname">{userInfo.nickname}</span>
+          </div>
         )}
       </div>
     </header>
