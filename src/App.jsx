@@ -10,8 +10,8 @@ function App() {
   useEffect(() => {
     Api.getPosts({
       page: 0,
-      size: 10,
-      sort: 'date', // date ,desc
+      size: 1000,
+      sort: 'date,desc', // date ,desc
     }).then((res) => {
       setWantedListData(res.content);
     });

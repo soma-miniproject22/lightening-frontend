@@ -13,6 +13,7 @@ class Interceptor {
   constructor() {
     this.instance = axios.create({
       baseURL,
+      withCredentials: true,
     });
 
     this.instance = this.setupInterceptorsTo(this.instance);

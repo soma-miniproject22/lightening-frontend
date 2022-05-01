@@ -42,9 +42,11 @@ const WantedList = ({ list }) => {
   // Only once
   // HammerJs가 React ^16.0 이어서 이게 최선...
   useEffect(() => {
-    const items = Array.from(
-      document.querySelectorAll('.b-list-item.fg:not(.closed)'),
-    );
+    if (!list || list.length === 0) return;
+
+    // 그냥 closed 도 되게 함.
+    // 어차피 신청한 경우도 뺄 수 있어야 하니까.
+    const items = Array.from(document.querySelectorAll('.b-list-item.fg'));
 
     items.forEach((fgElem) => {
       /* eslint-disable */
@@ -69,7 +71,7 @@ const WantedList = ({ list }) => {
         // console.log('swiped [left->right] dragged from left: ', e);
       });
     });
-  }, []);
+  }, [list]);
 
   return (
     <List divided relaxed className="b-list-root">
