@@ -75,7 +75,9 @@ const AddPost = () => {
     Api.pushPost(
       {
         ...tempvalue,
-        recruitEndDate: tempdate.toISOString().replace('Z', '+09:00'),
+        recruitEndDate: new Date(
+          tempdate - tempdate.getTimezoneOffset() * 60 * 1000,
+        ).toISOString(), //TODO: Fix TImeZone
       },
       accessToken,
     ).then((res) => {
