@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react';
 
 const initialState = {
-  userInfo: null,
-  accessToken: null,
+  userInfo: {},
+  accessToken: '',
   getUserInfo: () => {},
   login: () => {},
   logout: () => {},
@@ -12,9 +12,10 @@ export const UserContext = React.createContext(initialState);
 
 function userReducer(state, action) {
   switch (action.type) {
-    case 'GET_USER_INFO': {
+    case 'SET_USER_INFO': {
       return { userInfo: action.payload, ...state };
     }
+
     case 'LOG_IN': {
       return { accessToken: action.payload, ...state };
     }
@@ -31,7 +32,7 @@ const UserProvider = (props) => {
   const [userState, dispatchUserAction] = useReducer(userReducer, initialState);
 
   // Action Creator 정의
-  const getUserInfo = (userInfo) => {
+  const setUserInfo = (userInfo) => {
     dispatchUserAction({ type: 'GET_USER_INFO', payload: userInfo });
   };
 
@@ -48,7 +49,7 @@ const UserProvider = (props) => {
       value={{
         userInfo: userState.userInfo,
         accessToken: userState.accessToken,
-        getUserInfo,
+        setUserInfo,
         login,
         logout,
       }}
