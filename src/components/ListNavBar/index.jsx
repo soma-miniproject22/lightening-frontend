@@ -27,7 +27,6 @@ const NavBar = () => {
         <h1 className="l-list-navbar-title title-3">개</h1>
       </div>
       <div className="b-list-navbar-menu-container">
-        {accessToken}
         {accessToken === '' ? (
           <Button className="b-list-navbar-login-btn" onClick={handleSignin}>
             <img
