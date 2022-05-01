@@ -16,8 +16,9 @@ function GitHubOAuthRedirect() {
     if (accessToken) {
       Api.getUser(accessToken).then((res) => {
         if (res) {
-          setUserInfo(res);
+          console.log(res);
           login(accessToken);
+          setUserInfo(res);
           navigate('/');
         }
       });
