@@ -115,6 +115,8 @@ const WantedList = () => {
             <Button toggle name="COFFEE" active={ "COFFEE" == category } onClick={toggleFilter}>
               COFFEE
             </Button>
+          </Button.Group>
+          <Button.Group fluid>
             <Button toggle name="ALCOHOL" active={ "ALCOHOL" == category } onClick={toggleFilter}>
               ALCOHOL
             </Button>
