@@ -167,7 +167,11 @@ const AddPost = () => {
   });
 
   const handleSubmit = (e) => {
-    console.log(e);
+    if (accessToken === '') {
+      Api.signin().then((res) => {
+        if (res) window.location.href = res.response; // redirection to requested url
+      });
+    }
     let tempdate = new Date();
     tempdate.setHours(tempdate.getHours() + values.appointmentDate);
     let tempvalue = { ...values };
