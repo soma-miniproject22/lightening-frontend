@@ -12,9 +12,8 @@ import handWave from '../../assets/icons/hand_wave.gif';
 // const CURRENT_CATEGORY = '정렬: 기본'; // MEAL, COFFEE, ALCOHOL, GAME, ETC
 const MAX_NAMES_TO_DISPLAY = 1;
 
-const DayFormater = (date) => {
-  date = new Date(date);
-  let HowManyLeft = date - new Date();
+const DayFormater = (time, target) => {
+  let HowManyLeft = target - time;
   let days = Math.floor(HowManyLeft / (1000 * 60 * 60 * 24));
   let hours = Math.floor(
     (HowManyLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
@@ -38,6 +37,15 @@ const DayFormater = (date) => {
 const WantedList = () => {
   const { userInfo, accessToken } = useContext(UserContext);
   const [category, setCategory] = useState('ALL');
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+
   let [wantedListData, setWantedListData] = useState([]);
 
   useEffect(() => {
@@ -258,7 +266,7 @@ const WantedList = () => {
                     {postContent}
                   </List.Description>
                   <List.Description className="b-list-footer">
-                    <div className="b-list-item-date">{DayFormater(recruitEndDate)}</div>
+                    <div className="b-list-item-date">{DayFormater(time,new Date(recruitEndDate))}</div>
                     <div className="b-list-item-emoji-root-container">
                       <div
                         className={
