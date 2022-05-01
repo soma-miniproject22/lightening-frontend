@@ -16,10 +16,12 @@ function userReducer(state, action) {
       return { ...state, userInfo: action.payload };
     }
     case 'LOG_IN': {
+      localStorage.setItem('tkn', action.payload);
       return { ...state, accessToken: action.payload };
     }
     case 'LOG_OUT': {
-      return { ...state, userInfo: null, accessToken: null };
+      localStorage.removeItem('tkn');
+      return { ...state, userInfo: {}, accessToken: '' };
     }
     default:
       return { ...state };

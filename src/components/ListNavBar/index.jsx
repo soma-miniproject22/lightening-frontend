@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Button } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../store/user-context';
@@ -7,7 +7,22 @@ import './index.css';
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { accessToken, userInfo } = useContext(UserContext);
+  const { accessToken, userInfo, setUserInfo, login, logout } =
+    useContext(UserContext);
+
+  useEffect(() => {
+    if (!accessToken) {
+      let token = localStorage.getItem('tkn');
+      if (token) {
+        Api.getUser(token).then((res) => {
+          if (res) {
+            login(token);
+            setUserInfo(res);
+          }
+        });
+      }
+    }
+  }, [accessToken, login, setUserInfo]);
 
   const moveToIndexPage = () => {
     return navigate('/');
@@ -17,6 +32,11 @@ const NavBar = () => {
     Api.signin().then((res) => {
       if (res) window.location.href = res.response; // redirection to requested url
     });
+  };
+
+  const handleSignout = () => {
+    console.log('asd');
+    logout();
   };
 
   return (
@@ -38,7 +58,10 @@ const NavBar = () => {
             Login With GitHub
           </Button>
         ) : (
-          <div className="b-list-navbar-profile-container">
+          <div
+            className="b-list-navbar-profile-container"
+            onClick={handleSignout}
+          >
             <img
               src={userInfo.profileImage}
               className="b-list-item-thumb"
