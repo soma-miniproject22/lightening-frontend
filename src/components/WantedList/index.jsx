@@ -67,7 +67,7 @@ const WantedList = () => {
   // 스와이프 이벤트 등록
   // Only once
   // HammerJs가 React ^16.0 이어서 이게 최선...
-  useEffect(() => {
+  const registerSwipe = () => {
     if (!wantedListData || wantedListData.length === 0) return;
 
     // 그냥 closed 도 되게 함.
@@ -91,15 +91,18 @@ const WantedList = () => {
       });
 
       fg.on('swipeleft', (e) => {
-        this.toggleEye(e.target.name);
-        console.log('swiped [right->left] dragged from right: ', e);
+        console.log('swipeleft: ', e);
+        toggleEye(e.target.name);
       });
+      
       fg.on('swiperight', (e) => {
-        this.toggleHand(e.target.name);
-        // console.log('swiped [left->right] dragged from left: ', e);
+        console.log('swiperight: ', e);
+        toggleHand(e.target.name);
       });
     });
-  }, [wantedListData]);
+  }
+  
+  useEffect(registerSwipe, [wantedListData]);
 
   return (
     <List divided relaxed className="b-list-root">
