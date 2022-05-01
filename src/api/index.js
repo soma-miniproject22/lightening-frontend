@@ -19,7 +19,7 @@ class Api {
    */
   async signin() {
     return await handlePromiseGet('/authenticate/github', {
-      redirect: CONFIG.BASE_URL,
+      redirect: CONFIG.BASE_URL + '/redirect',
     });
   }
 
@@ -44,25 +44,25 @@ class Api {
    *  }
    *  ```
    */
-  async getPosts(tags) {
-    return await handlePromiseGet('/posts', tags ? { tag: tags } : {});
+  async getPosts(info) {
+    return await handlePromiseGet('/posts', info ? info : {});
   }
 
-  async pushPost(info) {
-    return await handlePromisePost('/posts', info);
+  async pushPost(info, token) {
+    return await handlePromisePost('/post', info, token);
   }
 
-  async toggleEye() {
-    return await handlePromiseGet('/toggleEye');
+  async toggleEye(info, token) {
+    return await handlePromisePost('/post/emotion', info, token);
   }
 
-  async toggleHand() {
-    return await handlePromiseGet('/toggleHand');
+  async toggleHand(info, token) {
+    return await handlePromisePost('/post/emotion', info, token);
   }
 
-  // async addPost(post) {
-  //   return await handlePromisePost('/posts', post);
-  // }
+  async getUser(token) {
+    return await handlePromiseGet('/user', {}, token);
+  }
 }
 
 export default new Api();
@@ -75,19 +75,19 @@ function authHeader(token) {
   // eslint-disable-next-line no-unused-vars
   return token
     ? {
-        headers: { Authorization: token },
+        headers: { Authorization: `Bearer ${token}` },
       }
     : {};
 }
 
 // eslint-disable-next-line no-unused-vars
-const handlePromiseGet = async (url, params = {}) => {
+const handlePromiseGet = async (url, params = {}, token = '') => {
   return new Promise((resolve, reject) => {
     Interceptor.getInstance()
-      .get(CONFIG.API_SERVER + url, { params: params })
+      .get(CONFIG.API_SERVER + url, { params: params, ...authHeader(token) })
       .then((res) => res.data)
       .then((res) => {
-        if (!res.error) resolve(res.data);
+        if (!res.error) resolve(res);
         throw new Error(res.error);
       })
       .catch((e) => reject(e));
@@ -100,7 +100,7 @@ const handlePromisePost = async (url, params = {}, token = '') => {
       .post(CONFIG.API_SERVER + url, params, authHeader(token))
       .then((res) => res.data)
       .then((res) => {
-        if (!res.error) resolve(res.data);
+        if (!res.error) resolve(res);
         throw new Error(res.error);
       })
       .catch((e) => reject(e));
