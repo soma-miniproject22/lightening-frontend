@@ -1,25 +1,13 @@
-import { useEffect, useState } from 'react';
-import Api from './api';
-
 import WantedList from './components/WantedList';
 import ListNavBar from './components/ListNavBar';
 
 function App() {
   // eslint-disable-next-line no-unused-vars
-  let [wantedListData, setWantedListData] = useState([]);
-  useEffect(() => {
-    Api.getPosts({
-      page: 0,
-      size: 1000,
-      sort: 'date,desc', // date ,desc
-    }).then((res) => {
-      setWantedListData(res.content);
-    });
-  }, []);
+
   return (
     <div className="App">
       <ListNavBar />
-      <WantedList list={wantedListData} />
+      <WantedList />
     </div>
   );
 }

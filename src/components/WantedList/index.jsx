@@ -1,7 +1,7 @@
 import './index.css';
 
-import React, { useEffect, useContext } from 'react';
-import { List, Popup } from 'semantic-ui-react';
+import React, { useEffect, useContext, useState } from 'react';
+import { List, Popup, Segment, Button } from 'semantic-ui-react';
 import Api from '../../api';
 import { UserContext } from '../../store/user-context';
 
@@ -9,13 +9,27 @@ import interesting from '../../assets/icons/thinkspin.gif';
 import thinkSpin from '../../assets/icons/thinkspin.gif';
 import handWave from '../../assets/icons/hand_wave.gif';
 
-const CURRENT_CATEGORY = '정렬: 기본'; // MEAL, COFFEE, ALCOHOL, GAME, ETC
+// const CURRENT_CATEGORY = '정렬: 기본'; // MEAL, COFFEE, ALCOHOL, GAME, ETC
 const MAX_NAMES_TO_DISPLAY = 2;
 
-const WantedList = ({ list }) => {
+const WantedList = () => {
   const { userInfo, accessToken } = useContext(UserContext);
-  const handleEye = (postId, e) => {
-    Api.toggleHand(
+  const [category, setCategory] = useState('ALL');
+  let [wantedListData, setWantedListData] = useState([]);
+
+  useEffect(() => {
+    Api.getPosts({
+      tag: category === 'ALL' ? null : category,
+      page: 0,
+      size: 1000,
+      sort: 'date,desc', // date ,desc
+    }).then((res) => {
+      setWantedListData(res.content);
+    });
+  }, [category]);
+  // eslint-disable-next-line no-unused-vars
+  const toggleEye = (postId) => {
+    Api.toggleEye(
       {
         postId: postId,
         type: 'WILLING',
@@ -25,8 +39,8 @@ const WantedList = ({ list }) => {
       if (res) console.log('toggle handle success'); // TODO: update handle
     });
   };
-
-  const handleHand = (postId, e) => {
+  // eslint-disable-next-line no-unused-vars
+  const toggleHand = (postId) => {
     Api.toggleHand(
       {
         postId: postId,
@@ -38,11 +52,14 @@ const WantedList = ({ list }) => {
     });
   };
 
+  const toggleFilter = (e) => {
+    setCategory(e.target.name);
+  };
   // 스와이프 이벤트 등록
   // Only once
   // HammerJs가 React ^16.0 이어서 이게 최선...
   useEffect(() => {
-    if (!list || list.length === 0) return;
+    if (!wantedListData || wantedListData.length === 0) return;
 
     // 그냥 closed 도 되게 함.
     // 어차피 신청한 경우도 뺄 수 있어야 하니까.
@@ -65,19 +82,43 @@ const WantedList = ({ list }) => {
       });
 
       fg.on('swipeleft', (e) => {
-        // console.log('swiped [right->left] dragged from right: ', e);
+        this.toggleEye(e.target.name);
+        console.log('swiped [right->left] dragged from right: ', e);
       });
       fg.on('swiperight', (e) => {
+        this.toggleHand(e.target.name);
         // console.log('swiped [left->right] dragged from left: ', e);
       });
     });
-  }, [list]);
+  }, [wantedListData]);
 
   return (
     <List divided relaxed className="b-list-root">
-      <div className="b-list-root-category-title">{CURRENT_CATEGORY}</div>
-
-      {list.map(
+      <div className="b-list-root-category-title">    
+        <Segment>
+          <Button.Group fluid>
+            <Button toggle name="ALL" active={ "ALL" == category } onClick={toggleFilter}>
+              ALL
+            </Button>
+            <Button toggle name="MEAL" active={ "MEAL" == category } onClick={toggleFilter}>
+              MEAL
+            </Button>
+            <Button toggle name="COFFEE" active={ "COFFEE" == category } onClick={toggleFilter}>
+              COFFEE
+            </Button>
+            <Button toggle name="ALCOHOL" active={ "ALCOHOL" == category } onClick={toggleFilter}>
+              ALCOHOL
+            </Button>
+            <Button toggle name="GAME" active={ "GAME" == category } onClick={toggleFilter}>
+              GAME
+            </Button>
+            <Button toggle name="ETC" active={ "ETC" == category } onClick={toggleFilter}>
+              ETC
+            </Button>
+          </Button.Group>
+        </Segment>
+      </div>
+      {wantedListData.map(
         ({
           postId,
           accountImage,
@@ -115,7 +156,7 @@ const WantedList = ({ list }) => {
           const names =
             _names + (_names.length > 0 && handsCount > 1 ? ' ...' : '');
 
-          const isClosed = Math.random() < 0.25;
+          const isClosed = new Date() < recruitEndDate;
 
           return (
             <div className="b-list-fg-bg-container" key={postId}>
