@@ -11,7 +11,6 @@ const initialState = {
 export const UserContext = React.createContext(initialState);
 
 function userReducer(state, action) {
-  console.log(`Action: ${action.type} - ${action.payload}`);
   switch (action.type) {
     case 'SET_USER_INFO': {
       return { ...state, userInfo: action.payload };
@@ -33,7 +32,7 @@ const UserProvider = (props) => {
 
   // Action Creator 정의
   const setUserInfo = (userInfo) => {
-    dispatchUserAction({ type: 'GET_USER_INFO', payload: userInfo });
+    dispatchUserAction({ type: 'SET_USER_INFO', payload: userInfo });
   };
 
   const login = (accessToken) => {
