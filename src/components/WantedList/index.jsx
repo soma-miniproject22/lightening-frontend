@@ -10,7 +10,7 @@ import thinkSpin from '../../assets/icons/thinkspin.gif';
 import handWave from '../../assets/icons/hand_wave.gif';
 
 // const CURRENT_CATEGORY = '정렬: 기본'; // MEAL, COFFEE, ALCOHOL, GAME, ETC
-const MAX_NAMES_TO_DISPLAY = 2;
+const MAX_NAMES_TO_DISPLAY = 1;
 
 const WantedList = () => {
   const { userInfo, accessToken } = useContext(UserContext);
@@ -35,6 +35,7 @@ const WantedList = () => {
 
   // eslint-disable-next-line no-unused-vars
   const toggleEye = (postId) => {
+    console.log('postId:', postId);
     Api.toggleEye(
       {
         postId: postId,
@@ -49,6 +50,7 @@ const WantedList = () => {
 
   // eslint-disable-next-line no-unused-vars
   const toggleHand = (postId) => {
+    console.log('postId:', postId);
     Api.toggleHand(
       {
         postId: postId,
