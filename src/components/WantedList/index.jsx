@@ -18,6 +18,11 @@ const WantedList = () => {
   let [wantedListData, setWantedListData] = useState([]);
 
   useEffect(() => {
+    getPost();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [category]);
+
+  const getPost = () => {
     Api.getPosts({
       tag: category === 'ALL' ? null : category,
       page: 0,
@@ -26,7 +31,8 @@ const WantedList = () => {
     }).then((res) => {
       setWantedListData(res.content);
     });
-  }, [category]);
+  };
+
   // eslint-disable-next-line no-unused-vars
   const toggleEye = (postId) => {
     Api.toggleEye(
@@ -36,9 +42,11 @@ const WantedList = () => {
       },
       accessToken,
     ).then((res) => {
+      getPost();
       if (res) console.log('toggle handle success'); // TODO: update handle
     });
   };
+
   // eslint-disable-next-line no-unused-vars
   const toggleHand = (postId) => {
     Api.toggleHand(
@@ -48,6 +56,7 @@ const WantedList = () => {
       },
       accessToken,
     ).then((res) => {
+      getPost();
       if (res) console.log('toggle handle success'); // TODO: update handle
     });
   };
