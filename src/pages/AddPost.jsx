@@ -26,6 +26,106 @@ const appointmentOptions = [
     text: '4시간 후',
     value: 4,
   },
+  {
+    key: '5',
+    text: '5시간 후',
+    value: 5,
+  },
+  {
+    key: '6',
+    text: '6시간 후',
+    value: 6,
+  },
+  {
+    key: '7',
+    text: '7시간 후',
+    value: 7,
+  },
+  {
+    key: '8',
+    text: '8시간 후',
+    value: 8,
+  },
+  {
+    key: '9',
+    text: '9시간 후',
+    value: 9,
+  },
+  {
+    key: '10',
+    text: '10시간 후',
+    value: 10,
+  },
+  {
+    key: '11',
+    text: '11시간 후',
+    value: 11,
+  },
+  {
+    key: '12',
+    text: '12시간 후',
+    value: 12,
+  },
+  {
+    key: '13',
+    text: '13시간 후',
+    value: 13,
+  },
+  {
+    key: '14',
+    text: '14시간 후',
+    value: 14,
+  },
+  {
+    key: '15',
+    text: '15시간 후',
+    value: 15,
+  },
+  {
+    key: '16',
+    text: '16시간 후',
+    value: 16,
+  },
+  {
+    key: '17',
+    text: '17시간 후',
+    value: 17,
+  },
+  {
+    key: '18',
+    text: '18시간 후',
+    value: 18,
+  },
+  {
+    key: '19',
+    text: '19시간 후',
+    value: 19,
+  },
+  {
+    key: '20',
+    text: '20시간 후',
+    value: 20,
+  },
+  {
+    key: '21',
+    text: '21시간 후',
+    value: 21,
+  },
+  {
+    key: '22',
+    text: '22시간 후',
+    value: 22,
+  },
+  {
+    key: '23',
+    text: '23시간 후',
+    value: 23,
+  },
+  {
+    key: '24',
+    text: '24시간 후',
+    value: 24,
+  },
 ];
 
 const postTagOptions = [
@@ -77,7 +177,9 @@ const AddPost = () => {
         ...tempvalue,
         recruitEndDate: new Date(
           tempdate - tempdate.getTimezoneOffset() * 60 * 1000,
-        ).toISOString(), //TODO: Fix TImeZone
+        )
+          .toISOString()
+          .replace('Z', '+09:00'), //TODO: Fix TImeZone
       },
       accessToken,
     ).then((res) => {
