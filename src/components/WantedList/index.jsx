@@ -147,7 +147,7 @@ const WantedList = ({ list }) => {
                             </span>
                           </div>
                         }
-                        content="김성빈 이형창"
+                        content={emotions.filter( i => i.emotionType === 'WILLING').map(i=>i.nickname).join(' ')}
                         inverted
                       />
                     </div>
@@ -171,7 +171,7 @@ const WantedList = ({ list }) => {
                             </span>
                           </div>
                         }
-                        content="김성빈 이형창"
+                        content={emotions.filter( i => i.emotionType === 'PARTICIPATE').map(i=>i.nickname).join(' ')}
                         inverted
                       />
                     </div>
