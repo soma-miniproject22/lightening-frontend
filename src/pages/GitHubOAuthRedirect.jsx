@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { UserContext } from '../store/user-context';
 import Api from '../api';
@@ -11,16 +11,18 @@ function GitHubOAuthRedirect() {
 
   const accessToken = searchParams.get('access_token');
 
-  console.log('accessToken:', accessToken);
-  if (accessToken) {
-    Api.getUser(accessToken).then((res) => {
-      if (res) {
-        setUserInfo(res);
-        login(accessToken);
-        navigate('/');
-      }
-    });
-  }
+  useEffect(() => {
+    console.log('accessToken:', accessToken);
+    if (accessToken) {
+      Api.getUser(accessToken).then((res) => {
+        if (res) {
+          setUserInfo(res);
+          login(accessToken);
+          navigate('/');
+        }
+      });
+    }
+  }, [accessToken, login, navigate, setUserInfo]);
 
   return <div>Welcome! You're logged in. Returning to home!</div>;
 }

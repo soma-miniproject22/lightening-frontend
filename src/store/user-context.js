@@ -13,14 +13,14 @@ export const UserContext = React.createContext(initialState);
 function userReducer(state, action) {
   switch (action.type) {
     case 'SET_USER_INFO': {
-      return { userInfo: action.payload, ...state };
+      return { ...state, userInfo: action.payload };
     }
 
     case 'LOG_IN': {
-      return { accessToken: action.payload, ...state };
+      return { ...state, accessToken: action.payload };
     }
     case 'LOG_OUT': {
-      return { userInfo: null, accessToken: null, ...state };
+      return { ...state, userInfo: null, accessToken: null };
     }
     default:
       return { ...state };
