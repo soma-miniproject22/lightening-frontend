@@ -79,7 +79,7 @@ const WantedList = () => {
     items.forEach((fgElem) => {
       /* eslint-disable */
       const fg = new Hammer(fgElem);
-      const dataId = Number.parseInt(fgElem.getAttribute("dataId"), 10);
+      const dataId = Number.parseInt(fgElem.getAttribute('dataId'), 10);
 
       fg.on('panmove', (e) => {
         fgElem.style.transitionDuration = '5ms';
@@ -96,38 +96,68 @@ const WantedList = () => {
       fg.on('swipeleft', () => {
         toggleHand(dataId);
       });
-      
+
       fg.on('swiperight', () => {
         toggleEye(dataId);
       });
     });
-  }
-  
+  };
+
   useEffect(registerSwipe, [wantedListData]);
 
   return (
     <List divided relaxed className="b-list-root">
-      <div className="b-list-root-category-title">    
+      <div className="b-list-root-category-title">
         <Segment>
           <Button.Group fluid>
-            <Button toggle name="ALL" active={ "ALL" == category } onClick={toggleFilter}>
+            <Button
+              toggle
+              name="ALL"
+              active={'ALL' == category}
+              onClick={toggleFilter}
+            >
               ALL
             </Button>
-            <Button toggle name="MEAL" active={ "MEAL" == category } onClick={toggleFilter}>
+            <Button
+              toggle
+              name="MEAL"
+              active={'MEAL' == category}
+              onClick={toggleFilter}
+            >
               MEAL
             </Button>
-            <Button toggle name="COFFEE" active={ "COFFEE" == category } onClick={toggleFilter}>
+            <Button
+              toggle
+              name="COFFEE"
+              active={'COFFEE' == category}
+              onClick={toggleFilter}
+            >
               COFFEE
             </Button>
           </Button.Group>
           <Button.Group fluid>
-            <Button toggle name="ALCOHOL" active={ "ALCOHOL" == category } onClick={toggleFilter}>
+            <Button
+              toggle
+              name="ALCOHOL"
+              active={'ALCOHOL' == category}
+              onClick={toggleFilter}
+            >
               ALCOHOL
             </Button>
-            <Button toggle name="GAME" active={ "GAME" == category } onClick={toggleFilter}>
+            <Button
+              toggle
+              name="GAME"
+              active={'GAME' == category}
+              onClick={toggleFilter}
+            >
               GAME
             </Button>
-            <Button toggle name="ETC" active={ "ETC" == category } onClick={toggleFilter}>
+            <Button
+              toggle
+              name="ETC"
+              active={'ETC' == category}
+              onClick={toggleFilter}
+            >
               ETC
             </Button>
           </Button.Group>
@@ -142,7 +172,7 @@ const WantedList = () => {
           meetDate,
           emotions,
           recruitEndDate,
-          maxCount
+          maxCount,
         }) => {
           // 각 라인 별 더미 데이터 생성 로직
           const isEyesSelected =
@@ -165,7 +195,7 @@ const WantedList = () => {
           const _names = emotions
             .filter((i) => i.emotionType === 'PARTICIPATE')
             .slice(0, Math.min(handsCount, MAX_NAMES_TO_DISPLAY)) // MAX 혹은 카운터 이상으로 표시 x
-            .map((i) => `[${i.nickname}]`) // 이름 구분의 용이함 위해
+            .map((i) => i.nickname) // 이름 구분의 용이함 위해
             .join(' '); // 문자열로 반환
 
           const names =
@@ -214,25 +244,38 @@ const WantedList = () => {
                         }
                         onClick={toggleEye.bind(this, postId)}
                       >
-                        <Popup
-                          trigger={
-                            <div>
-                              <img
-                                className="b-list-item-emoji-interest"
-                                src={interesting}
-                                alt="interesting"
-                              />
-                              <span className="b-list-item-emoji-counter">
-                                {eyesCount}
-                              </span>
-                            </div>
-                          }
-                          content={emotions
-                            .filter((i) => i.emotionType === 'WILLING')
-                            .map((i) => i.nickname)
-                            .join(' ')}
-                          inverted
-                        />
+                        {eyesCount === 0 ? (
+                          <div>
+                            <img
+                              className="b-list-item-emoji-interest"
+                              src={interesting}
+                              alt="interesting"
+                            />
+                            <span className="b-list-item-emoji-counter">
+                              {eyesCount}
+                            </span>
+                          </div>
+                        ) : (
+                          <Popup
+                            trigger={
+                              <div>
+                                <img
+                                  className="b-list-item-emoji-interest"
+                                  src={interesting}
+                                  alt="interesting"
+                                />
+                                <span className="b-list-item-emoji-counter">
+                                  {eyesCount}
+                                </span>
+                              </div>
+                            }
+                            content={emotions
+                              .filter((i) => i.emotionType === 'WILLING')
+                              .map((i) => `[${i.nickname}] `)
+                              .join(' ')}
+                            inverted
+                          />
+                        )}
                       </div>
                       <div
                         className={
@@ -241,25 +284,38 @@ const WantedList = () => {
                         }
                         onClick={toggleHand.bind(this, postId)}
                       >
-                        <Popup
-                          trigger={
-                            <div>
-                              <img
-                                className="b-list-item-emoji-handwave"
-                                src={handWave}
-                                alt="hand wave"
-                              />
-                              <span className="b-list-item-emoji-counter">
-                                {handsCount}/{maxCount} {names}
-                              </span>
-                            </div>
-                          }
-                          content={emotions
-                            .filter((i) => i.emotionType === 'PARTICIPATE')
-                            .map((i) => i.nickname)
-                            .join(' ')}
-                          inverted
-                        />
+                        {handWave === 0 ? (
+                          <div>
+                            <img
+                              className="b-list-item-emoji-handwave"
+                              src={handWave}
+                              alt="hand wave"
+                            />
+                            <span className="b-list-item-emoji-counter">
+                              {handsCount}/{maxCount} {names}
+                            </span>
+                          </div>
+                        ) : (
+                          <Popup
+                            trigger={
+                              <div>
+                                <img
+                                  className="b-list-item-emoji-handwave"
+                                  src={handWave}
+                                  alt="hand wave"
+                                />
+                                <span className="b-list-item-emoji-counter">
+                                  {handsCount}/{maxCount} {names}
+                                </span>
+                              </div>
+                            }
+                            content={emotions
+                              .filter((i) => i.emotionType === 'PARTICIPATE')
+                              .map((i) => `[${i.nickname}] `)
+                              .join(' ')}
+                            inverted
+                          />
+                        )}
                       </div>
                     </div>
                   </List.Description>
