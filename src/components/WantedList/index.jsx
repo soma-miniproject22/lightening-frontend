@@ -79,6 +79,7 @@ const WantedList = () => {
     items.forEach((fgElem) => {
       /* eslint-disable */
       const fg = new Hammer(fgElem);
+      const dataId = Number.parseInt(fgElem.getAttribute("dataId"), 10);
 
       fg.on('panmove', (e) => {
         fgElem.style.transitionDuration = '5ms';
@@ -92,14 +93,12 @@ const WantedList = () => {
         fgElem.style.transform = 'translateX(0px)';
       });
 
-      fg.on('swipeleft', (e) => {
-        console.log('swipeleft: ', e);
-        toggleEye(e.target.name);
+      fg.on('swipeleft', () => {
+        toggleEye(dataId);
       });
       
-      fg.on('swiperight', (e) => {
-        console.log('swiperight: ', e);
-        toggleHand(e.target.name);
+      fg.on('swiperight', () => {
+        toggleHand(dataId);
       });
     });
   }
@@ -193,7 +192,7 @@ const WantedList = () => {
               <List.Item
                 className={'b-list-item fg' + (isClosed ? ' closed' : '')}
                 key={postId}
-                id="fg"
+                dataid={postId}
               >
                 <img
                   src={accountImage}
