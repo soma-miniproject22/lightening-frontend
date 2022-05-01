@@ -12,6 +12,29 @@ import handWave from '../../assets/icons/hand_wave.gif';
 // const CURRENT_CATEGORY = '정렬: 기본'; // MEAL, COFFEE, ALCOHOL, GAME, ETC
 const MAX_NAMES_TO_DISPLAY = 1;
 
+const DayFormater = (date) => {
+  date = new Date(date);
+  let HowManyLeft = date - new Date();
+  let days = Math.floor(HowManyLeft / (1000 * 60 * 60 * 24));
+  let hours = Math.floor(
+    (HowManyLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+  );
+  let minutes = Math.floor((HowManyLeft % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((HowManyLeft % (1000 * 60)) / 1000);
+
+  if (days > 0) {
+    return `${days}일 후 시작`;
+  } else if (hours > 0) {
+    return `${hours}시간 후 시작`;
+  } else if (minutes > 0) {
+    return `${minutes}분 후 시작`;
+  } else if (seconds > 0) {
+    return `1분 내 시작`;
+  } else {
+    return '종료';
+  }
+};
+
 const WantedList = () => {
   const { userInfo, accessToken } = useContext(UserContext);
   const [category, setCategory] = useState('ALL');
@@ -235,7 +258,7 @@ const WantedList = () => {
                     {postContent}
                   </List.Description>
                   <List.Description className="b-list-footer">
-                    <div className="b-list-item-date">{meetDate}</div>
+                    <div className="b-list-item-date">{DayFormater(recruitEndDate)}</div>
                     <div className="b-list-item-emoji-root-container">
                       <div
                         className={
