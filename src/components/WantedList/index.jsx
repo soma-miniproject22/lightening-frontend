@@ -242,7 +242,6 @@ const WantedList = () => {
                           'b-list-item-emoji-each-container' +
                           (isEyesSelected ? ' selected' : '')
                         }
-                        onClick={toggleEye.bind(this, postId)}
                       >
                         {eyesCount === 0 ? (
                           <div>
@@ -282,7 +281,6 @@ const WantedList = () => {
                           'b-list-item-emoji-each-container' +
                           (isParticipating ? ' selected' : '')
                         }
-                        onClick={toggleHand.bind(this, postId)}
                       >
                         {handWave === 0 ? (
                           <div>
