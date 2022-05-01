@@ -84,4 +84,10 @@
 
 .b-list-navbar-profile-container {
   display: flex;
+  align-items: center;
+}
+
+.b-list-navbar-profile-container .b-list-item-thumb {
+  width: 2em;
+  height: 2em;
 }
